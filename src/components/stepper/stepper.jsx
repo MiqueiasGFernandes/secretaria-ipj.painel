@@ -3,7 +3,7 @@ import { SimpleForm } from 'react-admin';
 import StepperFormToolbar from './stepper-form-toolbar';
 
 function Stepper({ children, member, setMember }) {
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(0);
   const totalSteps = children.length;
 
   const nextStep = (currentStep) => {
