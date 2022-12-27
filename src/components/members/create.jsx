@@ -88,7 +88,7 @@ function CreateMember() {
           </Grid>
         </Step>
         <Step label="Família">
-          <Grid container columnSpacing={2}>
+          <Grid container columnSpacing={1}>
             <Grid item xs={6} md={4}>
               <SelectInput
                 source="estado civil"
