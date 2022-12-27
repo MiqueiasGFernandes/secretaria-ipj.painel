@@ -9,7 +9,7 @@ function StepperFormToolbar({
       <Button
         disabled={isFirstStep}
         label="Anterior"
-        onClick={() => handleReturnStep(currentStep - 1)}
+        onClick={() => handleReturnStep(currentStep)}
         style={{
           marginRight: '10px',
         }}
