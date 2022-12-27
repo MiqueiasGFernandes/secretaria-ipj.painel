@@ -12,13 +12,13 @@ export default {
   getMany: () => Promise,
   getManyReference: () => Promise,
   create: (resource, params) => {
-    const previousDara = localStorage.getItem(resource)
+    const previousData = localStorage.getItem(resource)
       ? JSON.parse(localStorage.getItem(resource))
       : [];
 
-    previousDara.push(params);
+    previousData.push(params);
 
-    localStorage.setItem(resource, previousDara);
+    localStorage.setItem(resource, JSON.stringify(previousData));
   },
   update: () => Promise,
   updateMany: () => Promise,

@@ -36,14 +36,14 @@ function CreateMember() {
     <Create
       title="Cadastrar Novo Membro"
     >
-      <Stepper memberData={member} setMember={setMember}>
+      <Stepper member={member} setMember={setMember}>
         <Step
           label="Informações de Naturalidade"
         >
           <Grid container columnSpacing={2}>
             <Grid item xs={12}>
               <TextInput
-                source="nome"
+                source="name"
                 fullWidth
                 validate={[
                   required('O campo \'nome\' é obrigatório'),
@@ -52,7 +52,7 @@ function CreateMember() {
             </Grid>
             <Grid item xs={12} md={4}>
               <DateInput
-                source="data de nascimento"
+                source="birthdate"
                 label="Data de Nascimento"
                 validate={[
                   required('O campo \'data de nascimento\' é obrigatório'),
@@ -63,7 +63,8 @@ function CreateMember() {
             </Grid>
             <Grid item xs={12} md={4}>
               <SelectInput
-                source="naturalidade"
+                label="Naturalidade"
+                source="naturality"
                 choices={[{
                   id: 'brasileiro',
                   name: 'Brasileiro',
@@ -79,7 +80,7 @@ function CreateMember() {
             </Grid>
             <Grid item xs={12} md={4}>
               <SelectInput
-                source="uf de naturalidade"
+                source="ufOrigin"
                 label="UF de naturalidade"
                 choices={brazilianStates}
                 fullWidth
@@ -91,7 +92,7 @@ function CreateMember() {
           <Grid container columnSpacing={1}>
             <Grid item xs={6} md={4}>
               <SelectInput
-                source="estado civil"
+                source="maritalStatus"
                 label="Estado Civil"
                 validate={
                 [
@@ -121,7 +122,7 @@ function CreateMember() {
             </Grid>
             <Grid item xs={6} md={4}>
               <DateInput
-                source="data de casamento"
+                source="weddingDate"
                 style={{ marginRight: '15px' }}
                 label="Data de Casamento"
                 fullWidth
@@ -130,21 +131,21 @@ function CreateMember() {
             <Grid item xs={12} md={4}>
               <TextInput
                 style={{ marginRight: '15px', width: '80%' }}
-                source="nome do conjuge"
+                source="spouse"
                 label="Nome do Cônjuge"
                 fullWidth
               />
             </Grid>
             <Grid xs={12}>
               <TextInput
-                source="nome do pai"
+                source="fatherName"
                 label="Nome do Pai"
                 fullWidth
               />
             </Grid>
             <Grid xs={12}>
               <TextInput
-                source="nome da mae"
+                source="motherName"
                 label="Nome da Mãe"
                 fullWidth
               />
@@ -152,7 +153,7 @@ function CreateMember() {
             <Grid xs={12}>
               <TextInput
                 multiline
-                source="outros integrantes da familia"
+                source="anotherFamilyMembers"
                 label="Outros Integrantes da Família"
                 fullWidth
               />
@@ -224,7 +225,7 @@ function CreateMember() {
             <Grid item xs={4}>
               <TextInput
                 type="number"
-                source="numero de residencia"
+                source="residenceNumber"
                 label="Número da residência"
                 validate={[
                   required('O campo \'número de residência\' é obrigatório'),
@@ -234,28 +235,28 @@ function CreateMember() {
             </Grid>
             <Grid item xs={4}>
               <TextInput
-                source="complemento"
+                source="addressComplement"
                 label="Complemento"
                 fullWidth
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextInput
-                source="telefone residencial"
+                source="homePhone"
                 label="Tel. Residencial"
                 fullWidth
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextInput
-                source="telefone comercial"
+                source="commercialPhone"
                 label="Tel. Comercial"
                 fullWidth
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextInput
-                source="celular"
+                source="mobilePhone"
                 label="Celular"
                 fullWidth
               />
@@ -274,7 +275,7 @@ function CreateMember() {
           <Grid container columnSpacing={2}>
             <Grid item xs={12} md={4}>
               <SelectInput
-                source="grau de instrucao"
+                source="schooling"
                 label="Grau de Instrução"
                 choices={academicLevels}
                 fullWidth
@@ -285,7 +286,7 @@ function CreateMember() {
             </Grid>
             <Grid item xs={12} md={8}>
               <TextInput
-                source="profissao"
+                source="occupation"
                 label="Profissão"
                 fullWidth
               />
@@ -296,7 +297,7 @@ function CreateMember() {
           <Grid container columnSpacing={2}>
             <Grid item xs={12} md={2}>
               <RadioButtonGroupInput
-                source="membro"
+                source="isMember"
                 label="Já é membro da IPB?"
                 choices={[
                   {
@@ -312,40 +313,40 @@ function CreateMember() {
             </Grid>
             <Grid item xs={12} md={10}>
               <TextInput
-                source="igreja anterior"
+                source="previousPresbyterianChurch"
                 label="IPB de Membresia"
                 fullWidth
               />
             </Grid>
             <Grid item xs={6} md={2}>
               <DateInput
-                source="data do batismo infantil"
+                source="pedobaptismDate"
                 label="Data do Batismo Infantil"
               />
             </Grid>
             <Grid item xs={6} md={10}>
               <TextInput
-                source="ministro oficante do batismo infantil"
+                source="pedobaptismMinister"
                 label="Ministro Oficiante"
                 fullWidth
               />
             </Grid>
             <Grid item xs={6} md={2}>
               <DateInput
-                source="data da profissao de fe"
+                source="faithConfessionDate"
                 label="Data da Profissão de Fé"
               />
             </Grid>
             <Grid item xs={6} md={10}>
               <TextInput
-                source="ministro oficiante da profissao de fe"
+                source="faichConfessionMinister"
                 label="Ministro Oficiante"
                 fullWidth
               />
             </Grid>
             <Grid item xs={12}>
               <TextInput
-                source="observacoes"
+                source="observations"
                 label="Observações"
                 fullWidth
               />

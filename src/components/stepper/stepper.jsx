@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { SimpleForm } from 'react-admin';
+import { SimpleForm, useRedirect } from 'react-admin';
 import StepperFormToolbar from './stepper-form-toolbar';
+import dataProviderService from '../../services/data-provider';
 
 function Stepper({ children, member, setMember }) {
   const [step, setStep] = useState(0);
-  const totalSteps = children.length;
+  const redirect = useRedirect();
+  const totalSteps = children.length - 1;
 
   const nextStep = (currentStep) => {
     setStep(currentStep + 1);
@@ -19,17 +21,21 @@ function Stepper({ children, member, setMember }) {
       width="100%"
       toolbar={(
         <StepperFormToolbar
-          isLastStep={(totalSteps - 1) === step}
+          isLastStep={totalSteps === step}
           isFirstStep={step === 0}
           handleReturnStep={previousStep}
           currentStep={step}
         />
         )}
-      onSubmit={(data) => {
+      onSubmit={async (data) => {
         if (step + 1 <= totalSteps) {
+          setMember({ ...data, ...member });
           nextStep(step);
+        } else {
+          setMember({ ...data, ...member });
+          await dataProviderService.create('member', member);
+          redirect('/');
         }
-        setMember({ ...data, ...member });
       }}
     >
       {children[step]}
