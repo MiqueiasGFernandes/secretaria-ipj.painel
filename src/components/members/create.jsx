@@ -1,12 +1,11 @@
 import {
-  MenuItem, Select as CustomSelectInput, TextField as CustomTextField, Grid,
+  Grid, MenuItem, Select as CustomSelectInput, TextField as CustomTextField,
 } from '@mui/material';
 import React, { useState } from 'react';
 import {
   Create,
   DateInput, RadioButtonGroupInput, required,
-  SelectInput,
-  TextInput,
+  SelectInput, TextInput,
 } from 'react-admin';
 import academicLevels from '../../constants/academic-levels';
 import brazilianStates from '../../constants/brazilian-states';
@@ -121,10 +120,18 @@ function CreateMember() {
               />
             </Grid>
             <Grid item xs={6} md={4}>
-              <DateInput
-                source="weddingDate"
-                style={{ marginRight: '15px' }}
+              <CustomTextField
+                id="weddingDate"
                 label="Data de Casamento"
+                type="date"
+                value={member.weddingDate}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={(event) => setMember({
+                  ...member,
+                  weddingDate: event.target.value,
+                })}
                 fullWidth
               />
             </Grid>
@@ -339,7 +346,7 @@ function CreateMember() {
             </Grid>
             <Grid item xs={6} md={10}>
               <TextInput
-                source="faichConfessionMinister"
+                source="faithConfessionMinister"
                 label="Ministro Oficiante"
                 fullWidth
               />
