@@ -1,4 +1,8 @@
 import React from 'react';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigatePreviousIcon from '@mui/icons-material/NavigateBefore';
+import SaveIcon from '@mui/icons-material/Save';
+
 import { Button, SaveButton, Toolbar } from 'react-admin';
 
 function StepperFormToolbar({
@@ -7,6 +11,7 @@ function StepperFormToolbar({
   return (
     <Toolbar>
       <Button
+        startIcon={<NavigatePreviousIcon />}
         disabled={isFirstStep}
         label="Anterior"
         onClick={() => handleReturnStep(currentStep)}
@@ -15,6 +20,7 @@ function StepperFormToolbar({
         }}
       />
       <SaveButton
+        icon={(isLastStep) ? <SaveIcon /> : <NavigateNextIcon />}
         label={(isLastStep) ? 'Salvar' : 'Próximo'}
       />
     </Toolbar>
