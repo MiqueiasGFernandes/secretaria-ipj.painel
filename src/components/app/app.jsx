@@ -3,6 +3,7 @@ import { Admin, defaultTheme, Resource } from 'react-admin';
 import dataProviderService from '../../services/data-provider';
 import ListMember from '../members/list';
 import CreateMember from '../members/create';
+import ShowMember from '../members/show';
 
 const customTheme = {
   ...defaultTheme,
@@ -21,7 +22,7 @@ const customTheme = {
 function App() {
   return (
     <Admin theme={customTheme} dataProvider={dataProviderService}>
-      <Resource name="membros" create={CreateMember} list={ListMember} />
+      <Resource name="membros" create={CreateMember} list={ListMember} show={ShowMember} />
     </Admin>
   );
 }

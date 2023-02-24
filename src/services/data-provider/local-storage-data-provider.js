@@ -8,7 +8,19 @@ export default {
       data,
     });
   },
-  getOne: () => Promise,
+  getOne: (resource, { id }) => {
+    const previousData = localStorage.getItem(resource)
+      ? JSON.parse(localStorage.getItem(resource)) : [];
+    const data = previousData.find((item) => String(item.id) === String(id));
+
+    if (!data) {
+      return Promise.resolve();
+    }
+
+    return Promise.resolve({
+      data,
+    });
+  },
   getMany: () => Promise,
   getManyReference: () => Promise,
   create: (resource, params) => {
@@ -16,7 +28,7 @@ export default {
       ? JSON.parse(localStorage.getItem(resource))
       : [];
 
-    previousData.push(params);
+    previousData.push({ id: new Date().getMilliseconds(), ...params });
 
     localStorage.setItem(resource, JSON.stringify(previousData));
   },
