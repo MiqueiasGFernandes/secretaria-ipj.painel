@@ -33,7 +33,7 @@ function Stepper({ children, member, setMember }) {
           nextStep(step);
         } else {
           setMember({ ...data, ...member });
-          await dataProviderService.create('member', member);
+          await dataProviderService.create('membros', member);
           redirect('/');
         }
       }}

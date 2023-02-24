@@ -1,15 +1,28 @@
 import React from 'react';
-import { Datagrid, List, TextField } from 'react-admin';
+import {
+  Datagrid, EditButton, List, ShowButton, TextField, TextInput,
+} from 'react-admin';
+import columns from '../../constants/model-columns';
 
 function ListMembers() {
-  const columns = ['código', 'nome', 'nascimento', 'naturalidade', 'uf', 'estado civil', 'bairro', 'cidade', 'cep', 'telefones', 'email', 'profissão', 'membresia'];
-
   return (
-    <List>
+    <List filters={
+      [
+        <TextInput
+          label="Pesquisar"
+          source="q"
+          alwaysOn
+          style={{ marginTop: 30, marginBottom: 30 }}
+        />,
+      ]
+    }
+    >
       <Datagrid>
-        {columns.map((column) => (
-          <TextField source={column} />
+        {columns.resume.map(({ source, label }) => (
+          <TextField source={source} label={label} />
         ))}
+        <ShowButton label="Exibir" />
+        <EditButton label="Editar" />
       </Datagrid>
     </List>
   );
