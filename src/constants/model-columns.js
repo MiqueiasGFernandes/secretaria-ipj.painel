@@ -103,8 +103,8 @@ const full = [
     source: 'homePhone',
   },
   {
-    label: 'commercialPhone',
-    source: 'Tel. Comercial',
+    label: 'Tel. Comercial',
+    source: 'commercialPhone',
   },
   {
     source: 'mobilePhone',
