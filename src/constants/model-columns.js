@@ -88,7 +88,7 @@ const full = [
   },
   {
     label: 'UF',
-    source: 'UF',
+    source: 'uf',
   },
   {
     label: 'Número de residência',
@@ -119,7 +119,7 @@ const full = [
     label: 'Grau de instrução',
   },
   {
-    source: 'ocuppation',
+    source: 'occupation',
     label: 'Profissão',
   },
   {
