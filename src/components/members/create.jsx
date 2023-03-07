@@ -29,6 +29,13 @@ function CreateMember() {
     const addressInformation = await addressProviderService.getOne(cep.replace('-', ''));
 
     setAddress(addressInformation);
+    setMember({
+      ...member,
+      address: addressInformation.logradouro,
+      district: addressInformation.bairro,
+      city: addressInformation.localidade,
+      uf: addressInformation.uf,
+    });
   };
 
   return (
@@ -305,23 +312,32 @@ function CreateMember() {
             <Grid item xs={12} md={2}>
               <RadioButtonGroupInput
                 source="isMember"
+                address
                 label="Já é membro da IPB?"
                 choices={[
                   {
-                    id: true,
+                    id: 'true',
                     name: 'Sim',
                   },
                   {
-                    id: false,
+                    id: 'false',
                     name: 'Nâo',
                   },
                 ]}
               />
             </Grid>
             <Grid item xs={12} md={10}>
-              <TextInput
-                source="previousPresbyterianChurch"
-                label="IPB de Membresia"
+              <CustomTextField
+                id="previousPresbyterianChurch"
+                label="IPB de membresia"
+                value={member.previousPresbyterianChurch}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={(event) => setMember({
+                  ...member,
+                  previousPresbyterianChurch: event.target.value,
+                })}
                 fullWidth
               />
             </Grid>
