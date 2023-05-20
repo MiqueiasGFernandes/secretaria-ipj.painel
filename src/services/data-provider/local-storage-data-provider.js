@@ -32,8 +32,32 @@ export default {
 
     localStorage.setItem(resource, JSON.stringify(previousData));
   },
-  update: () => Promise,
+  update: (resource, { id, ...newData }) => {
+    const data = localStorage.getItem(resource) ? JSON.parse(localStorage.getItem(resource)) : [];
+    console.log(id, newData.data);
+
+    const newList = data.map((item) => {
+      console.log(item.id);
+      console.log(id === item.id);
+      if (id === item.id) {
+        return newData.data;
+      }
+      return item;
+    });
+
+    console.log(newList);
+
+    localStorage.setItem(resource, JSON.stringify(newList));
+  },
   updateMany: () => Promise,
-  delete: () => Promise,
+  delete: (resource, { id }) => {
+    const previousData = localStorage.getItem(resource)
+      ? JSON.parse(localStorage.getItem(resource)) : [];
+    const index = previousData.findIndex((item) => String(item.id) === String(id));
+
+    delete previousData[index];
+
+    localStorage.setItem(resource, JSON.stringify(previousData));
+  },
   deleteMany: () => Promise,
 };
