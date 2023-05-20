@@ -1,8 +1,15 @@
 import React from 'react';
-import { Admin, defaultTheme, Resource } from 'react-admin';
+import {
+  Admin,
+  Login,
+  Resource,
+  defaultTheme,
+} from 'react-admin';
+import authProviderService from '../../services/auth-provider';
 import dataProviderService from '../../services/data-provider';
-import ListMember from '../members/list';
 import CreateMember from '../members/create';
+import EditMember from '../members/edit';
+import ListMember from '../members/list';
 import ShowMember from '../members/show';
 
 const customTheme = {
@@ -21,8 +28,14 @@ const customTheme = {
 
 function App() {
   return (
-    <Admin theme={customTheme} dataProvider={dataProviderService}>
-      <Resource name="membros" create={CreateMember} list={ListMember} show={ShowMember} />
+    <Admin
+      authProvider={authProviderService}
+      theme={customTheme}
+      dataProvider={dataProviderService}
+      requireAuth
+      loginPage={Login}
+    >
+      <Resource name="members" create={CreateMember} list={ListMember} show={ShowMember} edit={EditMember} />
     </Admin>
   );
 }
