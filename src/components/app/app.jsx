@@ -1,30 +1,29 @@
+import { createTheme } from '@mui/material';
 import React from 'react';
 import {
   Admin,
   Login,
   Resource,
-  defaultTheme,
 } from 'react-admin';
+
 import authProviderService from '../../services/auth-provider';
 import dataProviderService from '../../services/data-provider';
+import i18nProvider from '../../services/translation/i18n-provider';
+
 import CreateMember from '../members/create';
 import EditMember from '../members/edit';
 import ListMember from '../members/list';
 import ShowMember from '../members/show';
 
-const customTheme = {
-  ...defaultTheme,
+import backgroundImage from '../../assets/login-backgroud.png';
+
+const customTheme = createTheme({
   palette: {
-    ...defaultTheme.palette,
-    secoundary: {
-      ...defaultTheme.palette.secondary,
-      main: '#b3002d',
-      light: '#ff1a53',
-      dark: '#800020',
+    primary: {
+      main: '#9c1421ff',
     },
   },
-
-};
+});
 
 function App() {
   return (
@@ -33,7 +32,8 @@ function App() {
       theme={customTheme}
       dataProvider={dataProviderService}
       requireAuth
-      loginPage={Login}
+      i18nProvider={i18nProvider}
+      loginPage={<Login backgroundImage={backgroundImage} />}
     >
       <Resource name="members" create={CreateMember} list={ListMember} show={ShowMember} edit={EditMember} />
     </Admin>
