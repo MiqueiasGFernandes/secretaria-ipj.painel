@@ -1,13 +1,8 @@
-import localStorageDataProvider from './local-storage-data-provider';
 import remoteStorageDataProvider from './remote-storage-data-provider';
 
 let dataProvider = null;
 
 function setDataProvider() {
-  if (process.env.REACT_APP_USE_LOCAL_DATA) {
-    dataProvider = localStorageDataProvider;
-  }
-
   dataProvider = remoteStorageDataProvider;
 }
 
