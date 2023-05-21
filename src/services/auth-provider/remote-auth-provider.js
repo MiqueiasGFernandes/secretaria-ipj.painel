@@ -14,12 +14,16 @@ const authProvider = {
   login: async ({ username, password }) => {
     const url = `${process.env.REACT_APP_LOGIN_URL}/login`;
     try {
-      const response = await axios.post(url, { email: username, password });
+      const response = await axios.post(url, { email: username, password }, {
+        headers: {
+          'X-CSRF-TOKEN': 'any',
+        },
+      });
       const { access_token } = response.data;
       localStorage.setItem('token', access_token);
       return Promise.resolve();
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.reject(error.response.message);
     }
   },
 

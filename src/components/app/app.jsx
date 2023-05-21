@@ -2,7 +2,6 @@ import { createTheme } from '@mui/material';
 import React from 'react';
 import {
   Admin,
-  Login,
   Resource,
 } from 'react-admin';
 
@@ -14,6 +13,8 @@ import CreateMember from '../members/create';
 import EditMember from '../members/edit';
 import ListMember from '../members/list';
 import ShowMember from '../members/show';
+
+import Login from '../login';
 
 import backgroundImage from '../../assets/login-backgroud.png';
 
