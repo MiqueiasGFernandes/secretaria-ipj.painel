@@ -7,7 +7,9 @@ import * as React from 'react';
 import {
   useEffect,
   useRef,
+  useState,
 } from 'react';
+import SignUpForm from '../signup';
 
 const PREFIX = 'RaLogin';
 export const LoginClasses = {
@@ -29,7 +31,7 @@ const Root = styled('div', {
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
   backgroundImage:
-        'radial-gradient(circle at 50% 14em, #313264 0%, #00023b 60%, #00023b 100%)',
+    'radial-gradient(circle at 50% 14em, #313264 0%, #00023b 60%, #00023b 100%)',
 
   [`& .${LoginClasses.card}`]: {
     minWidth: 300,
@@ -47,6 +49,28 @@ const Root = styled('div', {
 
 export default function Login(props) {
   const { children, backgroundImage, ...rest } = props;
+  const [activeForm, setActiveForm] = useState('LOGIN');
+
+  const ACTIVE_FORM = {
+    LOGIN:
+  <div>
+    <LoginForm />
+    <Link
+      to="/#"
+      onClick={(event) => { event.preventDefault(); setActiveForm('SIGNUP'); }}
+      style={{
+        textAlign: 'center',
+        width: '100%',
+        display: 'block',
+      }}
+    >
+      Crie uma conta agora
+
+    </Link>
+  </div>,
+    SIGNUP: <SignUpForm setActiveForm={setActiveForm} />,
+  };
+
   const containerRef = useRef();
   let backgroundImageLoaded = false;
 
@@ -80,24 +104,11 @@ export default function Login(props) {
             <LockIcon />
           </Avatar>
         </div>
-        <LoginForm />
+        {ACTIVE_FORM[activeForm]}
         <div style={{
           padding: '0px 20px 20px',
         }}
-        >
-          <Link
-            to="/signup"
-            style={{
-              textAlign: 'center',
-              width: '100%',
-              display: 'block',
-            }}
-          >
-            Crie uma conta agora
-
-          </Link>
-
-        </div>
+        />
       </Card>
     </Root>
   );
