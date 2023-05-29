@@ -52,12 +52,13 @@ export default function Signup({ setActiveForm }) {
     authProvider.register(values)
       .then(() => {
         setLoading(false);
+        setActiveForm('CONFIRMED_SIGNUP');
       })
       .catch((error) => {
         setLoading(false);
         notify(
-          (error.message || error.response.message)
-            ? `Ocorreu um erro ao cadastrar o novo usuário: ${error.message}` : 'Ocorreu um erro ao cadastrar o novo usuário',
+          (error.response.data.message)
+            ? `Ocorreu um erro ao cadastrar o novo usuário: ${error.response.data.message}` : 'Ocorreu um erro ao cadastrar o novo usuário',
           {
             type: 'error',
           },
@@ -74,8 +75,8 @@ export default function Signup({ setActiveForm }) {
       <CardContent className={LoginFormClasses.content}>
         <TextInput label="Nome" source="name" fullWidth />
         <TextInput label="Email" source="email" fullWidth />
-        <TextInput label="Senha" source="password" fullWidth />
-        <TextInput label="Confirmação de Senha" source="passwordConfirmation" fullWidth />
+        <TextInput type="password" label="Senha" source="password" fullWidth />
+        <TextInput type="password" label="Confirmação de Senha" source="passwordConfirmation" fullWidth />
         <Button
           variant="contained"
           type="submit"

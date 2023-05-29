@@ -10,6 +10,7 @@ import {
   useState,
 } from 'react';
 import SignUpForm from '../signup';
+import ConfirmedSignup from '../confirmed-signup';
 
 const PREFIX = 'RaLogin';
 export const LoginClasses = {
@@ -69,6 +70,7 @@ export default function Login(props) {
     </Link>
   </div>,
     SIGNUP: <SignUpForm setActiveForm={setActiveForm} />,
+    CONFIRMED_SIGNUP: <ConfirmedSignup setActiveForm={setActiveForm} />,
   };
 
   const containerRef = useRef();
