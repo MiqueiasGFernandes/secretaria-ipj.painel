@@ -11,6 +11,8 @@ const authService = {
 
   getAccessToken: () => remoteAuthProvider.getAccessToken(),
 
+  getPermissions: () => remoteAuthProvider.getPermissions(),
+
   register: (data) => remoteAuthProvider.register(data),
 };
 

@@ -50,6 +50,8 @@ const authProvider = {
     const token = localStorage.getItem('token');
     return Promise.resolve(token);
   },
+
+  getPermission: () => Promise.resolve(),
 };
 
 export default authProvider;
