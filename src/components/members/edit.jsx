@@ -127,11 +127,11 @@ function EditMember() {
           label="Membro da IPB"
           choices={[
             {
-              id: 'true',
+              id: 1,
               name: 'Sim',
             },
             {
-              id: 'false',
+              id: 2,
               name: 'Nâo',
             },
           ]}
