@@ -1,1 +1,1 @@
-export default (inputValue) => String(inputValue) === 'true' || String(inputValue) === 'false';
+export default (inputValue) => String(inputValue) === '1' || String(inputValue) === '0';
