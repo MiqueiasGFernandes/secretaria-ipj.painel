@@ -18,7 +18,7 @@ const dataProvider = {
     const url = `${process.env.REACT_APP_API_URL}/${resource}/${params.id}`;
     try {
       const response = await axios.get(url, { headers: { ...authorization } });
-      const { data } = response.data;
+      const { data } = response;
       return Promise.resolve({ data });
     } catch (error) {
       return Promise.reject(error);
