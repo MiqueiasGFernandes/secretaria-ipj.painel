@@ -4,7 +4,17 @@ const authorization = { authorization: `Bearer ${localStorage.getItem('token')}`
 
 const dataProvider = {
   getList: async (resource, params) => {
-    const url = `${process.env.REACT_APP_API_URL}/${resource}`;
+    const urlParams = [`sortBy=${params.sort.field}`, `sortDirection=${params.sort.order}`];
+
+    Object.keys(params).forEach((option) => {
+      if (params[option] && params[option] !== 'sort') {
+        Object.keys(params[option]).forEach((optionName) => {
+          urlParams.push(`${optionName}=${params[option][optionName]}`);
+        });
+      }
+    });
+
+    const url = `${process.env.REACT_APP_API_URL}/${resource}?${urlParams.join('&')}`;
     try {
       const response = await axios.get(url, { ...params, headers: { ...authorization } });
       const { data, total } = response.data;
