@@ -39,7 +39,16 @@ function App() {
       i18nProvider={i18nProvider}
       loginPage={<Login backgroundImage={backgroundImage} />}
     >
-      <Resource name="members" create={CreateMember} list={ListMember} show={ShowMember} edit={EditMember} />
+      <Resource
+        options={{
+          label: 'Membros',
+        }}
+        name="members"
+        create={CreateMember}
+        list={ListMember}
+        show={ShowMember}
+        edit={EditMember}
+      />
     </Admin>
   );
 }
