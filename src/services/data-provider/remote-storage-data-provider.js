@@ -10,7 +10,7 @@ const dataProvider = {
       const { data, total } = response.data;
       return Promise.resolve({ data, total });
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.reject(error.response.data.message);
     }
   },
 
@@ -21,7 +21,7 @@ const dataProvider = {
       const { data } = response;
       return Promise.resolve({ data });
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.reject(error.response.data.message);
     }
   },
 
@@ -32,7 +32,7 @@ const dataProvider = {
       const { data } = response.data;
       return Promise.resolve({ data });
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.reject(error.response.data.message);
     }
   },
 
@@ -43,7 +43,7 @@ const dataProvider = {
       const { data } = response.data;
       return Promise.resolve({ data });
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.reject(error.response.data.message);
     }
   },
 
@@ -53,7 +53,7 @@ const dataProvider = {
       await axios.delete(url, { headers: { ...authorization } });
       return Promise.resolve({ data: params.previousData });
     } catch (error) {
-      return Promise.reject(error);
+      return Promise.reject(error.response.data.message);
     }
   },
 };
