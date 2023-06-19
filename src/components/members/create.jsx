@@ -46,7 +46,7 @@ function CreateMember() {
         <Step
           label="Informações de Naturalidade"
         >
-          <Grid container columnSpacing={2}>
+          <Grid container>
             <Grid item xs={12}>
               <TextInput
                 source="name"
@@ -56,41 +56,44 @@ function CreateMember() {
                 ]}
               />
             </Grid>
-            <Grid item xs={12} md={4}>
-              <DateInput
-                source="birthdate"
-                label="Data de Nascimento"
-                validate={[
-                  required('O campo \'data de nascimento\' é obrigatório'),
-                ]}
-                fullWidth
-              />
-
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <SelectInput
-                label="Naturalidade"
-                source="naturality"
-                choices={[{
-                  id: 'brasileiro',
-                  name: 'Brasileiro',
-                }, {
-                  id: 'estrangeiro',
-                  name: 'Estrangeiro',
-                }]}
-                validate={[
-                  required('O campo \'naturalidade\' é obrigatório'),
-                ]}
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <SelectInput
-                source="ufOrigin"
-                label="UF de naturalidade"
-                choices={brazilianStates}
-                fullWidth
-              />
+            <Grid />
+            <Grid container columnSpacing={2} style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <Grid item xs={12} md={4}>
+                <DateInput
+                  source="birthdate"
+                  label="Data de Nascimento"
+                  validate={[
+                    required('O campo \'data de nascimento\' é obrigatório'),
+                  ]}
+                  fullWidth
+                  style={{ paddingTop: 3 }}
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <SelectInput
+                  label="Naturalidade"
+                  source="naturality"
+                  choices={[{
+                    id: 'brasileiro',
+                    name: 'Brasileiro',
+                  }, {
+                    id: 'estrangeiro',
+                    name: 'Estrangeiro',
+                  }]}
+                  validate={[
+                    required('O campo \'naturalidade\' é obrigatório'),
+                  ]}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <SelectInput
+                  source="ufOrigin"
+                  label="UF de naturalidade"
+                  choices={brazilianStates}
+                  fullWidth
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Step>
