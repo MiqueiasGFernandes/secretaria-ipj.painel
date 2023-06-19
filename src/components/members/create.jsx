@@ -98,8 +98,8 @@ function CreateMember() {
           </Grid>
         </Step>
         <Step label="Família">
-          <Grid container columnSpacing={1}>
-            <Grid item xs={6} md={4}>
+          <Grid container columnSpacing={1} style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <Grid item xs={6} md={4} style={{ paddingLeft: 0 }}>
               <SelectInput
                 source="maritalStatus"
                 label="Estado Civil"
@@ -130,24 +130,15 @@ function CreateMember() {
               />
             </Grid>
             <Grid item xs={6} md={4}>
-              <CustomTextField
-                id="weddingDate"
+              <DateInput
+                source="weddingDate"
                 label="Data de Casamento"
-                type="date"
-                value={member.weddingDate}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={(event) => setMember({
-                  ...member,
-                  weddingDate: event.target.value,
-                })}
                 fullWidth
+                style={{ paddingTop: 3 }}
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <TextInput
-                style={{ marginRight: '15px', width: '80%' }}
                 source="spouse"
                 label="Nome do Cônjuge"
                 fullWidth
