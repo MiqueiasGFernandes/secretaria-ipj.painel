@@ -130,11 +130,22 @@ function CreateMember() {
               />
             </Grid>
             <Grid item xs={6} md={4}>
-              <DateInput
-                source="weddingDate"
+              <CustomTextField
+                id="weddingDate"
                 label="Data de Casamento"
+                type="date"
+                value={member.weddingDate}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={(event) => setMember({
+                  ...member,
+                  weddingDate: event.target.value,
+                })}
                 fullWidth
-                style={{ paddingTop: 3 }}
+                style={{
+                  padding: [0, 20],
+                }}
               />
             </Grid>
             <Grid item xs={12} md={4}>
