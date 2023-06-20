@@ -51,7 +51,7 @@ const authProvider = {
     return Promise.resolve(token);
   },
 
-  getPermission: () => Promise.resolve(),
+  getPermissions: () => Promise.resolve(),
 };
 
 export default authProvider;
