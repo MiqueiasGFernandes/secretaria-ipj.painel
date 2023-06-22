@@ -212,7 +212,7 @@ function CreateMember() {
               ]}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} md={4}>
             <SelectInput
               label="UF"
               defaultValue={address.uf}
@@ -224,7 +224,7 @@ function CreateMember() {
               ]}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <TextInput
               type="number"
               source="residenceNumber"
@@ -235,7 +235,7 @@ function CreateMember() {
               fullWidth
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6} md={4}>
             <TextInput
               source="addressComplement"
               label="Complemento"
@@ -352,7 +352,7 @@ function CreateMember() {
               fullWidth
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} style={{ marginBottom: 60 }}>
             <TextInput
               source="observations"
               label="Observações"
