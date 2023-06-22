@@ -1,5 +1,4 @@
 import {
-  TextField as CustomTextField,
   Grid,
 } from '@mui/material';
 import React, { useState } from 'react';
@@ -18,7 +17,6 @@ import addressProviderService from '../../services/address-provider';
 import SectionTitle from '../section-title';
 
 function CreateMember() {
-  const [member, setMember] = useState({});
   const [address, setAddress] = useState({
     cep: null,
     logradouro: null,
@@ -273,6 +271,11 @@ function CreateMember() {
               fullWidth
             />
           </Grid>
+          <Grid xs={12} style={{ marginLeft: 8 }}>
+            <SectionTitle>
+              Informações Profissionais
+            </SectionTitle>
+          </Grid>
           <Grid item xs={12} md={4}>
             <SelectInput
               source="schooling"
@@ -291,10 +294,18 @@ function CreateMember() {
               fullWidth
             />
           </Grid>
+          <Grid xs={12} style={{ marginLeft: 8 }}>
+            <SectionTitle>
+              Membresia
+            </SectionTitle>
+          </Grid>
           <Grid item xs={12} md={2}>
             <RadioButtonGroupInput
               source="isMember"
               address
+              validate={[
+                required('O campo é obrigatório'),
+              ]}
               label="Já é membro da IPB?"
               choices={[
                 {
@@ -309,17 +320,9 @@ function CreateMember() {
             />
           </Grid>
           <Grid item xs={12} md={10}>
-            <CustomTextField
-              id="previousPresbyterianChurch"
+            <TextInput
+              source="previousPresbyterianChurch"
               label="IPB de membresia"
-              value={member.previousPresbyterianChurch}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={(event) => setMember({
-                ...member,
-                previousPresbyterianChurch: event.target.value,
-              })}
               fullWidth
             />
           </Grid>
@@ -354,6 +357,7 @@ function CreateMember() {
               source="observations"
               label="Observações"
               fullWidth
+              multiline
             />
           </Grid>
         </Grid>
