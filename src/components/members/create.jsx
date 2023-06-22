@@ -261,6 +261,9 @@ function CreateMember() {
               source="mobilePhone"
               label="Celular"
               fullWidth
+              validate={[
+                required('O campo \'celular\' é obrigatório'),
+              ]}
             />
           </Grid>
           <Grid item xs={12}>
@@ -285,6 +288,9 @@ function CreateMember() {
               style={{
                 marginRight: 10,
               }}
+              validate={[
+                required('O campo \'Grau de instrução\' é obrigatório'),
+              ]}
             />
           </Grid>
           <Grid item xs={12} md={8}>
@@ -309,11 +315,11 @@ function CreateMember() {
               label="Já é membro da IPB?"
               choices={[
                 {
-                  id: 'true',
+                  id: true,
                   name: 'Sim',
                 },
                 {
-                  id: 'false',
+                  id: false,
                   name: 'Nâo',
                 },
               ]}
