@@ -16,6 +16,13 @@ import brazilianStates from '../../constants/brazilian-states';
 import addressProviderService from '../../services/address-provider';
 import SectionTitle from '../section-title';
 
+function createTransform(record) {
+  return {
+    ...record,
+    isMember: record.isMember === 'true',
+  };
+}
+
 function CreateMember() {
   const [address, setAddress] = useState({
     cep: null,
@@ -33,6 +40,7 @@ function CreateMember() {
   return (
     <Create
       title="Cadastrar Novo Membro"
+      transform={createTransform}
     >
       <SimpleForm>
         <Grid columnSpacing={1} container style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -85,6 +93,9 @@ function CreateMember() {
               label="UF de naturalidade"
               choices={brazilianStates}
               fullWidth
+              validate={[
+                required('O campo \'Uf de naturalidade\' é obrigatório'),
+              ]}
             />
           </Grid>
           <Grid item xs={12}>
@@ -188,6 +199,9 @@ function CreateMember() {
               source="address"
               fullWidth
               defaultValue={address.logradouro}
+              validate={[
+                required('O campo \'endereço\' é obrigatório'),
+              ]}
             />
           </Grid>
           <Grid item xs={6}>
@@ -306,13 +320,13 @@ function CreateMember() {
             </SectionTitle>
           </Grid>
           <Grid item xs={12} md={2}>
+
             <RadioButtonGroupInput
               source="isMember"
-              address
+              label="Já é membro da IPB?"
               validate={[
                 required('O campo é obrigatório'),
               ]}
-              label="Já é membro da IPB?"
               choices={[
                 {
                   id: true,
