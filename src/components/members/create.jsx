@@ -41,6 +41,7 @@ function CreateMember() {
     <Create
       title="Cadastrar Novo Membro"
       transform={createTransform}
+      redirect="list"
     >
       <SimpleForm>
         <Grid columnSpacing={1} container style={{ justifyContent: 'center', alignItems: 'center' }}>
