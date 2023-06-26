@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
-
 const dataProvider = {
   getList: async (resource, params) => {
+    const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
+
     const urlParams = [`sortBy=${params.sort.field}`, `sortDirection=${params.sort.order}`];
 
     Object.keys(params).forEach((option) => {
@@ -25,6 +25,8 @@ const dataProvider = {
   },
 
   getOne: async (resource, params) => {
+    const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
+
     const url = `${process.env.REACT_APP_API_URL}/${resource}/${params.id}`;
     try {
       const response = await axios.get(url, { headers: { ...authorization } });
@@ -38,6 +40,7 @@ const dataProvider = {
   create: async (resource, params) => {
     const url = `${process.env.REACT_APP_API_URL}/${resource}`;
     try {
+      const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
       const response = await axios.post(url, params.data, { headers: { ...authorization } });
       const { data } = response.data;
       return Promise.resolve({ data });
@@ -49,6 +52,7 @@ const dataProvider = {
   update: async (resource, params) => {
     const url = `${process.env.REACT_APP_API_URL}/${resource}/${params.id}`;
     try {
+      const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
       const response = await axios.patch(url, params.data, { headers: { ...authorization } });
       const { data } = response.data;
       return Promise.resolve({ data });
@@ -60,6 +64,7 @@ const dataProvider = {
   delete: async (resource, params) => {
     const url = `${process.env.REACT_APP_API_URL}/${resource}/${params.id}`;
     try {
+      const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
       await axios.delete(url, { headers: { ...authorization } });
       return Promise.resolve({ data: params.previousData });
     } catch (error) {
