@@ -19,6 +19,12 @@ const authProvider = {
       localStorage.setItem('token', access_token);
       return Promise.resolve();
     } catch (error) {
+      if (error.response.status === 429) {
+        // eslint-disable-next-line prefer-promise-reject-errors
+        return Promise.reject(
+          'Limite máximo de solicitações atingido. Tente novamente mais tarde',
+        );
+      }
       return Promise.reject(error.response.message);
     }
   },
