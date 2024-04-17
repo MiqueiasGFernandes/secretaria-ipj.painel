@@ -4,6 +4,10 @@ const resume = [
     label: 'Nome',
   },
   {
+    source: 'memberDocumentId',
+    label: 'Matrícula',
+  },
+  {
     source: 'birthdate',
     label: 'Data de Nascimento',
   },
@@ -33,6 +37,10 @@ const full = [
   {
     source: 'name',
     label: 'Nome',
+  },
+  {
+    source: 'memberDocumentId',
+    label: 'Matrícula',
   },
   {
     source: 'birthdate',
