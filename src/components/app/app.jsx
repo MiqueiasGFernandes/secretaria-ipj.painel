@@ -14,6 +14,8 @@ import EditMember from '../members/edit';
 import ListMember from '../members/list';
 import ShowMember from '../members/show';
 
+import Dashboard from '../dashboard/dashboard';
+
 import Login from '../login';
 
 import backgroundImage from '../../assets/login-backgroud.png';
@@ -38,6 +40,7 @@ function App() {
       requireAuth
       i18nProvider={i18nProvider}
       loginPage={<Login backgroundImage={backgroundImage} />}
+      dashboard={Dashboard}
     >
       <Resource
         options={{
