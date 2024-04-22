@@ -313,6 +313,22 @@ function EditMember() {
               fullWidth
             />
           </Grid>
+          <Grid item xs={12}>
+            <RadioButtonGroupInput
+              source="frequenter"
+              label="Frequentante?"
+              choices={[
+                {
+                  id: true,
+                  name: 'Sim',
+                },
+                {
+                  id: false,
+                  name: 'Nâo',
+                },
+              ]}
+            />
+          </Grid>
           <Grid item xs={12} style={{ marginBottom: 60 }}>
             <TextInput
               source="observations"

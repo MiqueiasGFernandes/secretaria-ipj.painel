@@ -1,11 +1,11 @@
 const resume = [
   {
-    source: 'name',
-    label: 'Nome',
-  },
-  {
     source: 'memberDocumentId',
     label: 'Matrícula',
+  },
+  {
+    source: 'name',
+    label: 'Nome',
   },
   {
     source: 'birthdate',
@@ -24,23 +24,23 @@ const resume = [
     label: 'Estado Civil',
   },
   {
-    source: 'weddingDate',
-    label: 'Data de Casamento',
-  },
-  {
     source: 'mobilePhone',
     label: 'Celular',
+  },
+  {
+    source: 'frequenter',
+    label: 'Frequentante',
   },
 ];
 
 const full = [
   {
-    source: 'name',
-    label: 'Nome',
-  },
-  {
     source: 'memberDocumentId',
     label: 'Matrícula',
+  },
+  {
+    source: 'name',
+    label: 'Nome',
   },
   {
     source: 'birthdate',
@@ -157,6 +157,10 @@ const full = [
   {
     source: 'observations',
     label: 'Observações',
+  },
+  {
+    source: 'frequenter',
+    label: 'Frequentante',
   },
 ];
 

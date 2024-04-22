@@ -20,6 +20,7 @@ function createTransform(record) {
   return {
     ...record,
     isMember: record.isMember === 'true',
+    frequenter: record.frequenter === 'true',
   };
 }
 
@@ -371,6 +372,26 @@ function CreateMember() {
               source="faithConfessionMinister"
               label="Ministro Oficiante"
               fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <RadioButtonGroupInput
+              source="frequenter"
+              label="Frequentante?"
+              defaultValue={false}
+              validate={[
+                required('O campo é obrigatório'),
+              ]}
+              choices={[
+                {
+                  id: true,
+                  name: 'Sim',
+                },
+                {
+                  id: false,
+                  name: 'Nâo',
+                },
+              ]}
             />
           </Grid>
           <Grid item xs={12} style={{ marginBottom: 60 }}>
