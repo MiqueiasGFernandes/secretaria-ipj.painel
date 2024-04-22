@@ -4,8 +4,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import dashboardService from '../../services/dashboard-provider/dashboard-service';
 
-import frequentIcon from '../../assets/icons/frequent.svg';
-import memberIcon from '../../assets/icons/members.svg';
+import styles from './styles';
 
 export default function Dashboard() {
   const [count, setCount] = useState({
@@ -26,30 +25,16 @@ export default function Dashboard() {
   return (
     <Grid
       spacing={{ xs: 2, md: 6 }}
-      style={{
-        height: '100vh',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
+      className={styles.container}
       container
       xs={12}
     >
       <Grid item xs={12} md={6}>
         <Card
           variant="elevation"
-          style={{
-            backgroundColor: 'blue',
-            color: 'whitesmoke',
-            paddingRight: 15,
-          }}
+          className={styles.indicator.card}
         >
-          <div style={{
-            backgroundImage: `url(${memberIcon})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center right',
-            backgroundSize: '20%',
-          }}
-          >
+          <div className={styles.indicator.bg}>
             <CardContent>
               <Typography fontSize={64} fontWeight="bold">
                 {count.totalMembers}
@@ -62,20 +47,9 @@ export default function Dashboard() {
       <Grid item xs={12} md={6}>
         <Card
           variant="elevation"
-          style={{
-            backgroundColor: 'green',
-            color: 'whitesmoke',
-            backgroundImage: frequentIcon,
-            paddingRight: 15,
-          }}
+          className={styles.indicator.card}
         >
-          <div style={{
-            backgroundImage: `url(${frequentIcon})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center right',
-            backgroundSize: '20%',
-          }}
-          >
+          <div className={styles.indicator.bg}>
             <CardContent>
               <Typography fontSize={64} fontWeight="bold">
                 {count.frequenters}
