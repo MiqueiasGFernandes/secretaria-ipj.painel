@@ -4,6 +4,7 @@ import {
   Resource,
 } from 'react-admin';
 
+import { People, Update } from '@mui/icons-material';
 import authProvider from '../../services/auth-provider';
 import dataProvider from '../../services/data-provider';
 import i18nProvider from '../../services/translation/i18n-provider';
@@ -19,8 +20,10 @@ import Login from '../login';
 
 import backgroundImage from '../../assets/login-backgroud.png';
 
-import theme from '../../config/theme';
 import resources from '../../config/resources';
+import theme from '../../config/theme';
+import ListRequests from '../requests/list';
+import ShowRequest from '../requests/show';
 
 function App() {
   return (
@@ -37,11 +40,21 @@ function App() {
         options={{
           label: resources.members.label,
         }}
+        icon={People}
         name={resources.members.name}
         create={CreateMember}
         list={ListMember}
         show={ShowMember}
         edit={EditMember}
+      />
+      <Resource
+        options={{
+          label: resources.requests.label,
+        }}
+        icon={Update}
+        name={resources.requests.name}
+        list={ListRequests}
+        show={ShowRequest}
       />
     </Admin>
   );

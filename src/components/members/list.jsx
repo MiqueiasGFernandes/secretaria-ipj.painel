@@ -7,7 +7,8 @@ import isBoolean from '../../helpers/is-boolean';
 
 function ListMembers() {
   return (
-    <List filters={
+    <List
+      filters={
       [
         <TextInput
           label="Pesquisar"
