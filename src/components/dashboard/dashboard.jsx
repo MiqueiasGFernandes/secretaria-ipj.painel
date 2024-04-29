@@ -4,13 +4,15 @@ import {
 import React, { useEffect, useState } from 'react';
 import dashboardService from '../../services/dashboard-provider/dashboard-service';
 
-import styles from './styles';
+import useStyles from './styles';
 
 export default function Dashboard() {
   const [count, setCount] = useState({
     totalMembers: 0,
     frequenters: 0,
   });
+
+  const classes = useStyles();
 
   useEffect(() => {
     dashboardService.getData()
@@ -25,16 +27,16 @@ export default function Dashboard() {
   return (
     <Grid
       spacing={{ xs: 2, md: 6 }}
-      className={styles.container}
+      className={classes.container}
       container
       xs={12}
     >
       <Grid item xs={12} md={6}>
         <Card
           variant="elevation"
-          className={styles.indicator.card}
+          className={`${classes.indicator_card} ${classes.indicator_card_blue}`}
         >
-          <div className={styles.indicator.bg}>
+          <div className={`${classes.indicator_bg} ${classes.indicator_bg_members}`}>
             <CardContent>
               <Typography fontSize={64} fontWeight="bold">
                 {count.totalMembers}
@@ -47,9 +49,9 @@ export default function Dashboard() {
       <Grid item xs={12} md={6}>
         <Card
           variant="elevation"
-          className={styles.indicator.card}
+          className={[classes.indicator_card, classes.indicator_card_green].join(' ')}
         >
-          <div className={styles.indicator.bg}>
+          <div className={[classes.indicator_bg, classes.indicator_bg_freq].join(' ')}>
             <CardContent>
               <Typography fontSize={64} fontWeight="bold">
                 {count.frequenters}

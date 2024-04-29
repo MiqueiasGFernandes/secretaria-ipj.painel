@@ -35,7 +35,7 @@ function App() {
     >
       <Resource
         options={{
-          label: resources.members.name,
+          label: resources.members.label,
         }}
         name={resources.members.name}
         create={CreateMember}
