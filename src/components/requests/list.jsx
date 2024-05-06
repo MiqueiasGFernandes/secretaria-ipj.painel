@@ -11,6 +11,9 @@ import columns from './request-model-columns';
 function ListRequests() {
   return (
     <List
+      filter={{
+        status: 'pending',
+      }}
       filters={
       [
         <TextInput
