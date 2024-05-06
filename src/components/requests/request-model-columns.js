@@ -7,7 +7,7 @@ const resume = [
     View: TextField,
   },
   {
-    label: 'Data',
+    label: 'Data de Solicitação',
     source: 'created_at',
     View: DateField,
   },
