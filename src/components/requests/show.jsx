@@ -36,15 +36,37 @@ function ConfirmDialogs({ dialogOpen, setDialogOpen }) {
       });
   };
 
+  const handleRejected = () => {
+    update('requests', { id: record.id, data: { status: 'rejected' } })
+      .catch(() => {
+        notify('Ocorreu um erro interno ao rejeitar o registro');
+      })
+      .then(() => {
+        notify('Solicitação rejeitada com êxito');
+        redirect('/requests');
+      });
+  };
+
   return (
-    <Confirm
-      isOpen={dialogOpen.APPROVE}
-      title="Aprovar solicitação"
-      content="Deseja aprovar a solicitação?"
-      cancel="Cancelar"
-      onConfirm={handleConfirm}
-      onClose={() => setDialogOpen({ ...dialogOpen, APPROVE: false })}
-    />
+    <>
+      <Confirm
+        isOpen={dialogOpen.APPROVE}
+        title="Aprovar solicitação"
+        content="Deseja aprovar a solicitação?"
+        cancel="Cancelar"
+        onConfirm={handleConfirm}
+        onClose={() => setDialogOpen({ ...dialogOpen, APPROVE: false })}
+      />
+      <Confirm
+        isOpen={dialogOpen.REJECT}
+        title="Rejeitar solicitação"
+        content="Deseja rejeitar a solicitação?"
+        cancel="Cancelar"
+        onConfirm={handleRejected}
+        onClose={() => setDialogOpen({ ...dialogOpen, REJECT: false })}
+      />
+    </>
+
   );
 }
 
