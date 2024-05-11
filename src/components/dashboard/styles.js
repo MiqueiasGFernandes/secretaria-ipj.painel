@@ -2,6 +2,7 @@
 import { makeStyles } from '@mui/styles';
 import memberIcon from '../../assets/icons/members.svg';
 import frequencyIcon from '../../assets/icons/frequent.svg';
+import requestIconDash from '../../assets/icons/request-dash.svg';
 
 const useStyles = makeStyles({
   container: {
@@ -15,11 +16,15 @@ const useStyles = makeStyles({
     paddingRight: 15,
   },
   indicator_card_blue: {
-    backgroundColor: 'blue',
+    backgroundColor: '#2980b9',
+    color: 'whitesmoke',
+  },
+  indicator_card_yellow: {
+    backgroundColor: '#f1c40f',
     color: 'whitesmoke',
   },
   indicator_card_green: {
-    backgroundColor: 'green',
+    backgroundColor: '#27ae60',
     color: 'whitesmoke',
   },
   indicator_bg: {
@@ -32,6 +37,9 @@ const useStyles = makeStyles({
   },
   indicator_bg_freq: {
     backgroundImage: `url(${frequencyIcon})`,
+  },
+  indicator_bg_req: {
+    backgroundImage: `url(${requestIconDash})`,
   },
 });
 

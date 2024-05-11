@@ -10,6 +10,7 @@ export default function Dashboard() {
   const [count, setCount] = useState({
     totalMembers: 0,
     frequenters: 0,
+    requests: 0,
   });
 
   const classes = useStyles();
@@ -20,6 +21,7 @@ export default function Dashboard() {
         setCount({
           frequenters: data.frequenterMembers,
           totalMembers: data.totalMembers,
+          requests: data.requests,
         });
       });
   }, []);
@@ -31,7 +33,7 @@ export default function Dashboard() {
       container
       xs={12}
     >
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={4}>
         <Card
           variant="elevation"
           className={`${classes.indicator_card} ${classes.indicator_card_blue}`}
@@ -46,7 +48,7 @@ export default function Dashboard() {
           </div>
         </Card>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={4}>
         <Card
           variant="elevation"
           className={[classes.indicator_card, classes.indicator_card_green].join(' ')}
@@ -58,6 +60,21 @@ export default function Dashboard() {
               </Typography>
             </CardContent>
             <CardHeader title="Frequentantes" />
+          </div>
+        </Card>
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <Card
+          variant="elevation"
+          className={[classes.indicator_card, classes.indicator_card_yellow].join(' ')}
+        >
+          <div className={[classes.indicator_bg, classes.indicator_bg_req].join(' ')}>
+            <CardContent>
+              <Typography fontSize={64} fontWeight="bold">
+                {count.requests}
+              </Typography>
+            </CardContent>
+            <CardHeader title="Solicitações Pendentes" />
           </div>
         </Card>
       </Grid>
