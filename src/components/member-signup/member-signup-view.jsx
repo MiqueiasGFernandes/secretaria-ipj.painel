@@ -11,6 +11,7 @@ import {
   TextInput,
   Toolbar,
   required,
+  useAuthenticated,
 } from 'react-admin';
 import academicLevels from '../../constants/academic-levels';
 import brazilianStates from '../../constants/brazilian-states';
@@ -26,6 +27,12 @@ import SectionTitle from '../section-title';
 // }
 
 function SignupMember() {
+  useAuthenticated({
+    params: {
+      isGuest: true,
+    },
+  });
+
   const [address, setAddress] = useState({
     cep: null,
     logradouro: null,
