@@ -7,6 +7,10 @@ const resources = {
     name: 'requests',
     label: 'Solicitações',
   },
+  signupMember: {
+    name: 'signup',
+    label: 'Cadastre-se como Membro',
+  },
 };
 
 export default resources;

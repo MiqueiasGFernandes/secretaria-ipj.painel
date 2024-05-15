@@ -17,6 +17,7 @@ const authProvider = {
       const response = await axios.post(url, { email: username, password });
       const { access_token } = response.data;
       localStorage.setItem('token', access_token);
+      localStorage.setItem('permissions', 'admin');
       return Promise.resolve();
     } catch (error) {
       if (error.response.status === 429) {
@@ -31,12 +32,16 @@ const authProvider = {
 
   logout: async () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('permissions');
     return Promise.resolve();
   },
 
-  checkAuth: () => {
-    const token = localStorage.getItem('token');
-    return token ? Promise.resolve() : Promise.reject();
+  checkAuth: (data) => {
+    if (data.isGuest) {
+      return Promise.resolve();
+    }
+    const isAuth = localStorage.getItem('token');
+    return isAuth ? Promise.resolve() : Promise.reject();
   },
 
   checkError: ({ status }) => {
@@ -53,7 +58,10 @@ const authProvider = {
     return Promise.resolve(token);
   },
 
-  getPermissions: () => Promise.resolve(),
+  getPermissions: () => {
+    const role = localStorage.getItem('permissions');
+    return role || 'guest';
+  },
 };
 
 export default authProvider;

@@ -3,15 +3,15 @@ import remoteAuthProvider from './remote-auth-provider';
 const authService = {
   login: (data) => remoteAuthProvider.login(data),
 
-  logout: () => remoteAuthProvider.logout(),
+  logout: (data) => remoteAuthProvider.logout(data),
 
-  checkAuth: () => remoteAuthProvider.checkAuth(),
+  checkAuth: (data) => remoteAuthProvider.checkAuth(data),
 
   checkError: (data) => remoteAuthProvider.checkError(data),
 
-  getAccessToken: () => remoteAuthProvider.getAccessToken(),
+  getAccessToken: (data) => remoteAuthProvider.getAccessToken(data),
 
-  getPermissions: () => remoteAuthProvider.getPermissions(),
+  getPermissions: (data) => remoteAuthProvider.getPermissions(data),
 
   register: (data) => remoteAuthProvider.register(data),
 };

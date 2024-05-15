@@ -1,10 +1,12 @@
 import React from 'react';
 import {
   Admin,
+  CustomRoutes,
   Resource,
 } from 'react-admin';
 
 import { People, Update } from '@mui/icons-material';
+import { Route } from 'react-router-dom';
 import authProvider from '../../services/auth-provider';
 import dataProvider from '../../services/data-provider';
 import i18nProvider from '../../services/translation/i18n-provider';
@@ -13,6 +15,8 @@ import CreateMember from '../members/create';
 import EditMember from '../members/edit';
 import ListMember from '../members/list';
 import ShowMember from '../members/show';
+
+import SignupMember from '../member-signup/member-signup-view';
 
 import Dashboard from '../dashboard/dashboard';
 
@@ -31,7 +35,7 @@ function App() {
       authProvider={authProvider}
       theme={theme}
       dataProvider={dataProvider}
-      requireAuth
+      requireAuth={false}
       i18nProvider={i18nProvider}
       loginPage={<Login backgroundImage={backgroundImage} />}
       dashboard={Dashboard}
@@ -56,6 +60,9 @@ function App() {
         list={ListRequests}
         show={ShowRequest}
       />
+      <CustomRoutes noLayout>
+        <Route element={<SignupMember />} path="/signup" />
+      </CustomRoutes>
     </Admin>
   );
 }
