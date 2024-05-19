@@ -1,7 +1,12 @@
+/* eslint-disable react/jsx-closing-tag-location */
+/* eslint-disable react/jsx-one-expression-per-line */
 import {
   Grid,
+  Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import React, { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import {
   DateInput,
   RadioButtonGroupInput,
@@ -19,16 +24,28 @@ import academicLevels from '../../constants/academic-levels';
 import brazilianStates from '../../constants/brazilian-states';
 import addressProviderService from '../../services/address-provider';
 import SectionTitle from '../section-title';
+import Terms from '../terms/terms';
 
-// function createTransform(record) {
-//   return {
-//     ...record,
-//     isMember: record.isMember === 'true',
-//     frequenter: record.frequenter === 'true',
-//   };
-// }
+function createTransform(record) {
+  return {
+    ...record,
+    isMember: record.isMember === 'true',
+    frequenter: record.frequenter === 'true',
+  };
+}
 
 function SignupMember() {
+  const notify = () => {
+    toast.info('As funcionalidades relacionadas a "Login de Usuário" estão em testes. Em breve traremos mais novidades!', {
+      position: 'top-right',
+      autoClose: true,
+    });
+  };
+
+  useEffect(() => {
+    notify();
+  }, []);
+
   useAuthenticated({
     params: {
       isGuest: true,
@@ -43,6 +60,9 @@ function SignupMember() {
     localidade: null,
     uf: null,
   });
+
+  const [openDialog, setOpenDialog] = useState(false);
+
   const handleGetAddressByPostalCode = async (cep) => {
     const addressInformation = await addressProviderService.getOne(cep.replace('-', ''));
 
@@ -52,13 +72,14 @@ function SignupMember() {
     <Grid
       container
       style={{
-        padding: '5vh 2.5vw',
+        padding: isMobile ? '5vh 2.5vw' : '10vh 25vw',
       }}
     >
       <div>
         <img src={logo} alt="Igreja Presbiteriana de Jundiaí" />
       </div>
       <SimpleForm
+        textTransform={createTransform}
         toolbar={(
           <Toolbar>
             <SaveButton label="Cadastrar-se" />
@@ -439,6 +460,24 @@ function SignupMember() {
               fullWidth
             />
           </Grid>
+        </Grid>
+        <Grid>
+          <Typography fontSize={10}>
+            Ao clicar em Cadastre-se você declara que concorda com
+            os <button
+              type="button"
+              style={{
+                color: 'blue',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                background: 'none',
+                border: 0,
+              }}
+              onClick={() => setOpenDialog(true)}
+            >termos de privacidade.
+            </button>
+          </Typography>
+          <Terms onClose={() => setOpenDialog(false)} isOpen={openDialog} />
         </Grid>
       </SimpleForm>
     </Grid>
