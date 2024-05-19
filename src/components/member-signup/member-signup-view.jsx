@@ -18,6 +18,8 @@ import {
   PasswordInput,
   required,
   useAuthenticated,
+  minLength,
+  useDataProvider,
 } from 'react-admin';
 import logo from '../../assets/logo.png';
 import academicLevels from '../../constants/academic-levels';
@@ -35,6 +37,8 @@ function createTransform(record) {
 }
 
 function SignupMember() {
+  const dataProvider = useDataProvider();
+
   const notify = () => {
     toast.info('As funcionalidades relacionadas a "Login de Usuário" estão em testes. Em breve traremos mais novidades!', {
       position: 'top-right',
@@ -79,6 +83,10 @@ function SignupMember() {
         <img src={logo} alt="Igreja Presbiteriana de Jundiaí" />
       </div>
       <SimpleForm
+        onSubmit={async (event) => {
+          const data = createTransform(event);
+          await dataProvider.create('requests', { data });
+        }}
         textTransform={createTransform}
         toolbar={(
           <Toolbar>
@@ -453,6 +461,10 @@ function SignupMember() {
               source="password"
               label="Senha"
               fullWidth
+              validate={[
+                minLength(6, 'A senha deve possuir no mínimo 6 caracteres'),
+                required('O campo \'senha\' é obrigatório'),
+              ]}
             />
             <PasswordInput
               source="confirmPassword"
