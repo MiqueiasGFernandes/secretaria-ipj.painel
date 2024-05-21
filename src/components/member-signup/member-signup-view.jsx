@@ -61,7 +61,7 @@ function SignupMember() {
 
   const [requestId, setRequestId] = useState(null);
   const [openTermsDialog, setOpenTermsDialog] = useState(false);
-  const [openSuccessDialog, setOpenSucessDialog] = useState(true);
+  const [openSuccessDialog, setOpenSucessDialog] = useState(false);
 
   const handleGetAddressByPostalCode = async (cep) => {
     const addressInformation = await addressProviderService.getOne(cep.replace('-', ''));
