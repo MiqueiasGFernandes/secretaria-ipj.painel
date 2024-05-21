@@ -1,26 +1,30 @@
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-one-expression-per-line */
 import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
   Grid,
   Typography,
 } from '@mui/material';
-import { toast } from 'react-toastify';
-import React, { useEffect, useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import { Done } from '@mui/icons-material';
+import React, { useState } from 'react';
 import {
   DateInput,
+  PasswordInput,
   RadioButtonGroupInput,
   SaveButton,
   SelectInput,
   SimpleForm,
   TextInput,
   Toolbar,
-  PasswordInput,
+  minLength,
   required,
   useAuthenticated,
-  minLength,
   useDataProvider,
+  useNotify,
 } from 'react-admin';
+import { isMobile } from 'react-device-detect';
 import logo from '../../assets/logo.png';
 import academicLevels from '../../constants/academic-levels';
 import brazilianStates from '../../constants/brazilian-states';
@@ -38,17 +42,7 @@ function createTransform(record) {
 
 function SignupMember() {
   const dataProvider = useDataProvider();
-
-  const notify = () => {
-    toast.info('As funcionalidades relacionadas a "Login de Usuário" estão em testes. Em breve traremos mais novidades!', {
-      position: 'top-right',
-      autoClose: true,
-    });
-  };
-
-  useEffect(() => {
-    notify();
-  }, []);
+  const notify = useNotify();
 
   useAuthenticated({
     params: {
@@ -65,7 +59,9 @@ function SignupMember() {
     uf: null,
   });
 
-  const [openDialog, setOpenDialog] = useState(false);
+  const [requestId, setRequestId] = useState(null);
+  const [openTermsDialog, setOpenTermsDialog] = useState(false);
+  const [openSuccessDialog, setOpenSucessDialog] = useState(true);
 
   const handleGetAddressByPostalCode = async (cep) => {
     const addressInformation = await addressProviderService.getOne(cep.replace('-', ''));
@@ -84,8 +80,17 @@ function SignupMember() {
       </div>
       <SimpleForm
         onSubmit={async (event) => {
+          if (event.password !== event.confirmPassword) {
+            notify('As senhas digitadas devem ser iguais', { type: 'error' });
+            return;
+          }
           const data = createTransform(event);
-          await dataProvider.create('requests', { data });
+          await dataProvider
+            .create('requests', { data })
+            .then((result) => {
+              setRequestId(result.data.id);
+              setOpenSucessDialog(true);
+            });
         }}
         textTransform={createTransform}
         toolbar={(
@@ -485,11 +490,35 @@ function SignupMember() {
                 background: 'none',
                 border: 0,
               }}
-              onClick={() => setOpenDialog(true)}
+              onClick={() => setOpenTermsDialog(true)}
             >termos de privacidade.
             </button>
           </Typography>
-          <Terms onClose={() => setOpenDialog(false)} isOpen={openDialog} />
+          <Terms onClose={() => setOpenTermsDialog(false)} isOpen={openTermsDialog} />
+          <Dialog open={openSuccessDialog}>
+            <DialogTitle>
+              <b>
+                Solicitação {requestId} Criada
+              </b>
+            </DialogTitle>
+            <DialogContent>
+              <div style={{ display: 'flex', justifyContent: 'center', paddingBottom: 10 }}>
+                <Done
+                  style={{
+                    fontSize: 100,
+                    color: 'green',
+                  }}
+                />
+              </div>
+              <div>
+                <Typography>
+                  Sua solicitação foi criada com sucesso!
+                  Obrigado por contribuir para facilitar a gestão de membros da nossa Igreja!
+                </Typography>
+              </div>
+
+            </DialogContent>
+          </Dialog>
         </Grid>
       </SimpleForm>
     </Grid>
