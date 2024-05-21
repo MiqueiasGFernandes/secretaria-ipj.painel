@@ -109,7 +109,7 @@ export default function ShowRequest() {
           </Grid>
         </SimpleShowLayout>
       </Show>
-      <Show style={{ paddingBottom: 10 }}>
+      <Show title=" " style={{ paddingBottom: 10 }}>
         <SimpleShowLayout>
           {memberColumns.full
             .filter((item) => item.source !== 'memberDocumentId')
