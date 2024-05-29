@@ -10,6 +10,7 @@ import isBoolean from '../../helpers/is-boolean';
 function ListMembers() {
   return (
     <List
+      storeKey={false}
       filter={{ status: 'pending' }}
     >
       <Datagrid>
