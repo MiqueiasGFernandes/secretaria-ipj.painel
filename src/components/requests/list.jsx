@@ -3,7 +3,6 @@ import {
   Datagrid,
   List,
   ShowButton,
-  TextInput,
 } from 'react-admin';
 
 import columns from './request-model-columns';
@@ -14,18 +13,7 @@ function ListRequests() {
       filter={{
         status: 'pending',
       }}
-      filters={
-      [
-        <TextInput
-          label="Pesquisar"
-          source="q"
-          alwaysOn
-          style={{ marginTop: 30, marginBottom: 30 }}
-        />,
-      ]
-    }
       exporter={false}
-
     >
       <Datagrid>
         {columns.map((item) => React.createElement(item.View, {

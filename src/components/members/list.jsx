@@ -1,8 +1,11 @@
 import React from 'react';
 import {
-  Datagrid, EditButton,
+  Datagrid,
+  EditButton,
   FunctionField,
-  List, ShowButton,
+  List,
+  ShowButton,
+  TextInput,
 } from 'react-admin';
 import columns from '../../constants/model-columns';
 import isBoolean from '../../helpers/is-boolean';
@@ -12,6 +15,16 @@ function ListMembers() {
     <List
       storeKey={false}
       filter={{ status: 'pending' }}
+      filters={
+        [
+          <TextInput
+            label="Pesquisar"
+            source="q"
+            alwaysOn
+            style={{ marginTop: 30, marginBottom: 30 }}
+          />,
+        ]
+      }
     >
       <Datagrid>
         {columns.resume.map((item) => (
