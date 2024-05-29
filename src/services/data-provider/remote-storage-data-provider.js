@@ -1,4 +1,18 @@
+/* eslint-disable consistent-return */
 import axios from 'axios';
+
+function checkError(error) {
+  switch (error.response.status) {
+    case 401:
+      localStorage.removeItem('token');
+      localStorage.removeItem('permissions');
+
+      window.location.href = '/';
+      return;
+    default:
+      return Promise.reject(error.response.data.message);
+  }
+}
 
 const dataProvider = {
   getList: async (resource, params) => {
@@ -20,7 +34,7 @@ const dataProvider = {
       const { data, total } = response.data;
       return Promise.resolve({ data, total });
     } catch (error) {
-      return Promise.reject(error.response.data.message);
+      return checkError(error);
     }
   },
 
@@ -33,7 +47,7 @@ const dataProvider = {
       const { data } = response;
       return Promise.resolve({ data });
     } catch (error) {
-      return Promise.reject(error.response.data.message);
+      return checkError(error);
     }
   },
 
@@ -45,7 +59,7 @@ const dataProvider = {
       const { data } = response.data;
       return Promise.resolve({ data });
     } catch (error) {
-      return Promise.reject(error.response.data.message);
+      return checkError(error);
     }
   },
 
@@ -57,7 +71,7 @@ const dataProvider = {
       const { data } = response.data;
       return Promise.resolve({ data });
     } catch (error) {
-      return Promise.reject(error.response.data.message);
+      return checkError(error);
     }
   },
 
@@ -68,7 +82,7 @@ const dataProvider = {
       await axios.delete(url, { headers: { ...authorization } });
       return Promise.resolve({ data: params.previousData });
     } catch (error) {
-      return Promise.reject(error.response.data.message);
+      return checkError(error);
     }
   },
 };
