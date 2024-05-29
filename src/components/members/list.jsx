@@ -26,7 +26,7 @@ function ListMembers() {
         ]
       }
     >
-      <Datagrid>
+      <Datagrid bulkActionButtons={false}>
         {columns.resume.map((item) => (
           <FunctionField
             label={item.label}

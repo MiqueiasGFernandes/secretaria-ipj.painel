@@ -15,7 +15,7 @@ function ListRequests() {
       }}
       exporter={false}
     >
-      <Datagrid>
+      <Datagrid bulkActionButtons={false}>
         {columns.map((item) => React.createElement(item.View, {
           source: item.source,
           label: item.label,
