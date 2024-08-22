@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 import { Close, Done } from '@mui/icons-material';
 import { Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
@@ -26,7 +28,7 @@ function ConfirmDialogs({ dialogOpen, setDialogOpen }) {
   const [update] = useUpdate();
 
   const handleConfirm = () => {
-    update('requests', { id: record.id, data: { status: 'approved' } })
+    update('requests', { id: record.id, data: { status: 'approved', memberDocumentId: v4().slice(0, 4).toUpperCase() } })
       .catch(() => {
         notify('Ocorreu um erro interno ao aprovar o registro');
       })
