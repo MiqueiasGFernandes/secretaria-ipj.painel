@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-one-expression-per-line */
+import { Done } from '@mui/icons-material';
 import {
   Dialog,
   DialogContent,
@@ -7,18 +8,15 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
-import { Done } from '@mui/icons-material';
 import React, { useState } from 'react';
 import {
   DateInput,
-  PasswordInput,
   RadioButtonGroupInput,
   SaveButton,
   SelectInput,
   SimpleForm,
   TextInput,
   Toolbar,
-  minLength,
   required,
   useAuthenticated,
   useDataProvider,
@@ -454,27 +452,6 @@ function SignupMember() {
               label="Observações"
               fullWidth
               multiline
-            />
-          </Grid>
-          <Grid xs={12} style={{ marginLeft: 8 }}>
-            <SectionTitle>
-              Login de Usuário
-            </SectionTitle>
-          </Grid>
-          <Grid item xs={12}>
-            <PasswordInput
-              source="password"
-              label="Senha"
-              fullWidth
-              validate={[
-                minLength(6, 'A senha deve possuir no mínimo 6 caracteres'),
-                required('O campo \'senha\' é obrigatório'),
-              ]}
-            />
-            <PasswordInput
-              source="confirmPassword"
-              label="Confirme sua Senha"
-              fullWidth
             />
           </Grid>
         </Grid>
