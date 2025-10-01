@@ -18,7 +18,7 @@ const dataProvider = {
   getList: async (resource, params) => {
     const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
 
-    const urlParams = [`sortBy=${params.sort.field}`, `sortDirection=${params.sort.order}`];
+    const urlParams = [];
 
     Object.keys(params).forEach((option) => {
       if (params[option] && params[option] !== 'sort') {
