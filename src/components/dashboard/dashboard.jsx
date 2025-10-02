@@ -19,9 +19,9 @@ export default function Dashboard() {
     dashboardService.getData()
       .then((data) => {
         setCount({
-          frequenters: data.frequenterMembers,
+          frequenters: data.frequenters,
           totalMembers: data.totalMembers,
-          requests: data.requests,
+          requests: data.newMembersRequests,
         });
       });
   }, []);
