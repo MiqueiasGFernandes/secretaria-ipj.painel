@@ -1,7 +1,7 @@
-/* eslint-disable consistent-return */
 import axios from 'axios';
+import type { DataProvider, GetListResult } from 'ra-core';
 
-function checkError(error) {
+function checkError(error: any) {
   switch (error.response.status) {
     case 401:
       localStorage.removeItem('token');
@@ -14,11 +14,11 @@ function checkError(error) {
   }
 }
 
-const dataProvider = {
-  getList: async (resource, params) => {
+export const dataProvider: DataProvider = {
+  getList: async (resource, params): Promise<GetListResult<any>> => {
     const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
 
-    const urlParams = [];
+    const urlParams: string[] = [];
 
     Object.keys(params).forEach((option) => {
       if (params[option] && params[option] !== 'sort') {
@@ -29,13 +29,9 @@ const dataProvider = {
     });
 
     const url = `${process.env.REACT_APP_API_URL}/${resource}?${urlParams.join('&')}`;
-    try {
-      const response = await axios.get(url, { ...params, headers: { ...authorization } });
-      const { data, total } = response.data;
-      return Promise.resolve({ data, total });
-    } catch (error) {
-      return checkError(error);
-    }
+    const response = await axios.get(url, { ...params, headers: { ...authorization } });
+    const { data, total } = response.data;
+    return Promise.resolve({ data, total });
   },
 
   getOne: async (resource, params) => {
@@ -86,5 +82,3 @@ const dataProvider = {
     }
   },
 };
-
-export default dataProvider;

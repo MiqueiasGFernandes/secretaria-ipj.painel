@@ -1,25 +1,27 @@
 import axios from 'axios';
 import env from 'env-var';
 import type { UserEntity, AuthCredential } from '../../features/entities';
+import { AuthProvider } from 'ra-core';
 
-export const authProvider = {
+export const authProvider: AuthProvider = {
   register: async (user: UserEntity) => {
     const url = `${env.get("LOGIN_URL").asString()}/register`;
     await axios.post(url, user);
   },
 
   login: async (credentials: AuthCredential) => {
-    const url = `${env.get("LOGIN_URL").asString()}/login`;
     try {
+      const url = `${env.get("LOGIN_URL").asString()}/login`;
       const response = await axios.post(url, credentials);
       const { access_token } = response.data;
       localStorage.setItem('token', access_token);
       localStorage.setItem('permissions', 'admin');
       return Promise.resolve();
-    } catch (error) {
+    } catch (error: any) {
       if (error.response.status === 429) {
+        console.error(error)
         return Promise.reject(
-          'Limite máximo de solicitações atingido. Tente novamente mais tarde',
+          "Limite máximo de solicitações atingido. Tente novamente mais tarde",
         );
       }
       return Promise.reject(error.response.message);
@@ -54,8 +56,8 @@ export const authProvider = {
     return Promise.resolve(token);
   },
 
-  getPermissions: () => {
+  getPermissions: (_params: unknown): Promise<string> => {
     const role = localStorage.getItem('permissions');
-    return role || 'guest';
+    return Promise.resolve(role || 'guest');
   },
 };

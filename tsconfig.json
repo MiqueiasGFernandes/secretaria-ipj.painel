@@ -1,49 +1,58 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    // File Layout
-    // "rootDir": "./src",
-    // "outDir": "./dist",
-
-    // Environment Settings
-    // See also https://aka.ms/tsconfig/module
-    "strictPropertyInitialization": false,
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
-    "module": "es2022",
-    "target": "esnext",
-    "types": [
-      "react"
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
-
-    // Other Outputs
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-
-    // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
-
-    // Recommended Options
-    "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+    "types": [
+      "@testing-library/jest-dom"
+    ],
+    "allowJs": true,
     "skipLibCheck": true,
-  }
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "@services/*": [
+        "./services/*"
+      ],
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@templates/*": [
+        "./components/templates/*"
+      ],
+      "@presentation/*": [
+        "./presentation/*"
+      ],
+      "@components/*": [
+        "./presentation/components/*"
+      ],
+      "@domain/*": [
+        "./domain/*"
+      ],
+      "@application/*": [
+        "./application/*"
+      ],
+    }
+  },
+  "include": [
+    "src",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -7,6 +7,7 @@ import {
 import { People, Update } from '@mui/icons-material';
 import { Route } from 'react-router-dom';
 import { authProvider } from '../../services/auth-provider';
+import { theme } from 'styles/theme';
 
 export function App() {
   return (
