@@ -27,8 +27,8 @@ import logo from '../../assets/logo.png';
 import academicLevels from '../../constants/academic-levels';
 import brazilianStates from '../../constants/brazilian-states';
 import addressProviderService from '../../services/address-provider';
-import SectionTitle from '../section-title';
-import Terms from '../terms/terms';
+import SectionTitle from '../../components/section-title';
+import Terms from '../../components/terms/terms';
 
 function createTransform(record) {
   return {

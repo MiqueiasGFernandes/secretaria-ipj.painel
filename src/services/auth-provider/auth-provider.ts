@@ -1,27 +1,23 @@
 import axios from 'axios';
+import env from 'env-var';
+import type { UserEntity, AuthCredential } from '../../features/entities';
 
-const authProvider = {
-  register: async ({ name, email, password }) => {
-    const url = `${process.env.REACT_APP_LOGIN_URL}/register`;
-    try {
-      await axios.post(url, { name, email, password });
-      return Promise.resolve();
-    } catch (error) {
-      return Promise.reject(error);
-    }
+export const authProvider = {
+  register: async (user: UserEntity) => {
+    const url = `${env.get("LOGIN_URL").asString()}/register`;
+    await axios.post(url, user);
   },
 
-  login: async ({ username, password }) => {
-    const url = `${process.env.REACT_APP_LOGIN_URL}/login`;
+  login: async (credentials: AuthCredential) => {
+    const url = `${env.get("LOGIN_URL").asString()}/login`;
     try {
-      const response = await axios.post(url, { email: username, password });
+      const response = await axios.post(url, credentials);
       const { access_token } = response.data;
       localStorage.setItem('token', access_token);
       localStorage.setItem('permissions', 'admin');
       return Promise.resolve();
     } catch (error) {
       if (error.response.status === 429) {
-        // eslint-disable-next-line prefer-promise-reject-errors
         return Promise.reject(
           'Limite máximo de solicitações atingido. Tente novamente mais tarde',
         );
@@ -63,5 +59,3 @@ const authProvider = {
     return role || 'guest';
   },
 };
-
-export default authProvider;
