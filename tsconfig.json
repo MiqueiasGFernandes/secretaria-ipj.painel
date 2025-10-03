@@ -10,6 +10,7 @@
       "@testing-library/jest-dom"
     ],
     "allowJs": true,
+    "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     "strict": true,
     "strictPropertyInitialization": false,
@@ -31,20 +32,11 @@
       "@assets/*": [
         "./assets/*"
       ],
-      "@templates/*": [
-        "./components/templates/*"
-      ],
-      "@presentation/*": [
-        "./presentation/*"
-      ],
       "@components/*": [
-        "./presentation/components/*"
+        "./components/*"
       ],
-      "@domain/*": [
-        "./domain/*"
-      ],
-      "@application/*": [
-        "./application/*"
+      "@features/*": [
+        "./features/*"
       ],
     }
   },

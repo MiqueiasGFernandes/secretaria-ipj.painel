@@ -1,10 +1,9 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { makeStyles } from '@mui/styles';
-import memberIcon from '../../assets/icons/members.svg';
-import frequencyIcon from '../../assets/icons/frequent.svg';
-import requestIconDash from '../../assets/icons/request-dash.svg';
+import memberIcon from '@assets/icons/members.svg';
+import frequencyIcon from '@assets/icons/frequent.svg';
+import requestIconDash from '@assets/icons/request-dash.svg';
 
-const useStyles = makeStyles({
+export const useStyles = makeStyles({
   container: {
     height: '100vh',
     alignItems: 'center',
@@ -42,5 +41,3 @@ const useStyles = makeStyles({
     backgroundImage: `url(${requestIconDash})`,
   },
 });
-
-export default useStyles;

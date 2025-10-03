@@ -8,6 +8,8 @@ import { People, Update } from '@mui/icons-material';
 import { Route } from 'react-router-dom';
 import { authProvider } from '../../services/auth-provider';
 import { theme } from 'styles/theme';
+import { dataProvider } from '@services/data-provider';
+import { i18nProvider } from '@services/translation';
 
 export function App() {
   return (

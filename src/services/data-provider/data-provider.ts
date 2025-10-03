@@ -1,84 +1,66 @@
 import axios from 'axios';
-import type { DataProvider, GetListResult } from 'ra-core';
-
-function checkError(error: any) {
-  switch (error.response.status) {
-    case 401:
-      localStorage.removeItem('token');
-      localStorage.removeItem('permissions');
-
-      window.location.href = '/';
-      return;
-    default:
-      return Promise.reject(error.response.data.message);
-  }
-}
+import env from 'env-var';
+import type { DataProvider, DeleteManyParams, DeleteManyResult, GetListParams, GetListResult, GetManyParams, GetManyReferenceParams, GetManyReferenceResult, GetManyResult, RaRecord, UpdateManyParams, UpdateManyResult } from 'ra-core';
 
 export const dataProvider: DataProvider = {
-  getList: async (resource, params): Promise<GetListResult<any>> => {
+  getList: async (resource, params: GetListParams): Promise<GetListResult<any>> => {
     const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
 
     const urlParams: string[] = [];
 
     Object.keys(params).forEach((option) => {
-      if (params[option] && params[option] !== 'sort') {
-        Object.keys(params[option]).forEach((optionName) => {
-          urlParams.push(`${optionName}=${params[option][optionName]}`);
+      if (params[option as keyof GetListParams] && params[option as keyof GetListParams] !== 'sort') {
+        Object.keys(params[option as keyof GetListParams]).forEach((optionName) => {
+          urlParams.push(`${optionName}=${params[option as keyof GetListParams][optionName]}`);
         });
       }
     });
 
-    const url = `${process.env.REACT_APP_API_URL}/${resource}?${urlParams.join('&')}`;
+    const url = `${env}/${resource}?${urlParams.join('&')}`;
     const response = await axios.get(url, { ...params, headers: { ...authorization } });
-    const { data, total } = response.data;
-    return Promise.resolve({ data, total });
+    return response.data;
   },
 
   getOne: async (resource, params) => {
     const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
 
-    const url = `${process.env.REACT_APP_API_URL}/${resource}/${params.id}`;
-    try {
-      const response = await axios.get(url, { headers: { ...authorization } });
-      const { data } = response;
-      return Promise.resolve({ data });
-    } catch (error) {
-      return checkError(error);
-    }
+    const url = `${env.get("API_URL")}/${resource}/${params.id}`;
+    const response = await axios.get(url, { headers: { ...authorization } });
+    const { data } = response;
+    return { data };
   },
 
   create: async (resource, params) => {
-    const url = `${process.env.REACT_APP_API_URL}/${resource}`;
-    try {
-      const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
-      const response = await axios.post(url, params.data, { headers: { ...authorization } });
-      const { data } = response.data;
-      return Promise.resolve({ data });
-    } catch (error) {
-      return checkError(error);
-    }
+    const url = `${env.get("API_URL")}/${resource}`;
+    const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
+    const response = await axios.post(url, params.data, { headers: { ...authorization } });
+    const { data } = response.data;
+    return { data };
   },
 
   update: async (resource, params) => {
-    const url = `${process.env.REACT_APP_API_URL}/${resource}/${params.id}`;
-    try {
+    const url = `${env.get("API_URL")}/${resource}/${params.id}`;
       const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
       const response = await axios.patch(url, params.data, { headers: { ...authorization } });
       const { data } = response.data;
       return Promise.resolve({ data });
-    } catch (error) {
-      return checkError(error);
-    }
   },
-
   delete: async (resource, params) => {
-    const url = `${process.env.REACT_APP_API_URL}/${resource}/${params.id}`;
-    try {
+      const url = `${env.get("API_URL")}/${resource}/${params.id}`;
       const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
       await axios.delete(url, { headers: { ...authorization } });
-      return Promise.resolve({ data: params.previousData });
-    } catch (error) {
-      return checkError(error);
-    }
+      return { data: params.previousData as any };
   },
+  getMany: function <RecordType extends RaRecord = any>(resource: string, params: GetManyParams): Promise<GetManyResult<RecordType>> {
+    throw new Error('Function not implemented.');
+  },
+  getManyReference: function <RecordType extends RaRecord = any>(resource: string, params: GetManyReferenceParams): Promise<GetManyReferenceResult<RecordType>> {
+    throw new Error('Function not implemented.');
+  },
+  updateMany: function <RecordType extends RaRecord = any>(resource: string, params: UpdateManyParams): Promise<UpdateManyResult<RecordType>> {
+    throw new Error('Function not implemented.');
+  },
+  deleteMany: function <RecordType extends RaRecord = any>(resource: string, params: DeleteManyParams<RecordType>): Promise<DeleteManyResult<RecordType>> {
+    throw new Error('Function not implemented.');
+  }
 };

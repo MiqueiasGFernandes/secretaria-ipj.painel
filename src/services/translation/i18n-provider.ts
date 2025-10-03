@@ -1,7 +1,8 @@
+import { TranslationMessages } from 'ra-core';
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 import portugueseMessages from 'ra-language-portuguese';
 
-const messages = {
+const messages: Record<string, unknown | TranslationMessages>  = {
   pt: {
     ...portugueseMessages,
     ra: {
@@ -14,6 +15,6 @@ const messages = {
   },
 };
 
-const i18nProvider = polyglotI18nProvider((locale) => messages[locale], 'pt');
+const i18nProvider = polyglotI18nProvider((locale) => messages[locale] as TranslationMessages, 'pt');
 
-export default i18nProvider;
+export { i18nProvider };
