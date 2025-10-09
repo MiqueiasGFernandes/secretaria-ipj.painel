@@ -40,7 +40,7 @@
       ],
       "@shared/*": [
         "./shared/*"
-      ]
+      ],
     }
   },
   "include": [
