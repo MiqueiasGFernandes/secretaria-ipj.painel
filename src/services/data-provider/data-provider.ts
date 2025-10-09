@@ -1,5 +1,4 @@
 import axios from 'axios';
-import env from 'env-var';
 import type { DataProvider, DeleteManyParams, DeleteManyResult, GetListParams, GetListResult, GetManyParams, GetManyReferenceParams, GetManyReferenceResult, GetManyResult, RaRecord, UpdateManyParams, UpdateManyResult } from 'ra-core';
 
 export const dataProvider: DataProvider = {
@@ -16,7 +15,7 @@ export const dataProvider: DataProvider = {
       }
     });
 
-    const url = `${env}/${resource}?${urlParams.join('&')}`;
+    const url = `${import.meta.env.VITE_LOGIN_URL}/${resource}?${urlParams.join('&')}`;
     const response = await axios.get(url, { ...params, headers: { ...authorization } });
     return response.data;
   },
@@ -24,14 +23,14 @@ export const dataProvider: DataProvider = {
   getOne: async (resource, params) => {
     const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
 
-    const url = `${env.get("API_URL")}/${resource}/${params.id}`;
+    const url = `${import.meta.env.VITE_API_URL}/${resource}/${params.id}`;
     const response = await axios.get(url, { headers: { ...authorization } });
     const { data } = response;
     return { data };
   },
 
   create: async (resource, params) => {
-    const url = `${env.get("API_URL")}/${resource}`;
+    const url = `${import.meta.env.VITE_API_URL}/${resource}`;
     const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
     const response = await axios.post(url, params.data, { headers: { ...authorization } });
     const { data } = response.data;
@@ -39,14 +38,14 @@ export const dataProvider: DataProvider = {
   },
 
   update: async (resource, params) => {
-    const url = `${env.get("API_URL")}/${resource}/${params.id}`;
+    const url = `${import.meta.env.VITE_API_URL}/${resource}/${params.id}`;
       const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
       const response = await axios.patch(url, params.data, { headers: { ...authorization } });
       const { data } = response.data;
       return Promise.resolve({ data });
   },
   delete: async (resource, params) => {
-      const url = `${env.get("API_URL")}/${resource}/${params.id}`;
+      const url = `${import.meta.env.VITE_API_URL}/${resource}/${params.id}`;
       const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
       await axios.delete(url, { headers: { ...authorization } });
       return { data: params.previousData as any };
