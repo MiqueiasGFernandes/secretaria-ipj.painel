@@ -8,10 +8,13 @@ export const authProvider: AuthProvider = {
     await axios.post(url, user);
   },
 
-  login: async (credentials: AuthCredentialEntity) => {
+  login: async ({ username: email, password }: AuthCredentialEntity) => {
     try {
       const url = `${import.meta.env.VITE_LOGIN_URL}/login`;
-      const response = await axios.post(url, credentials);
+      const response = await axios.post(url, {
+        email,
+        password
+      });
       const { access_token } = response.data;
       localStorage.setItem('token', access_token);
       localStorage.setItem('permissions', 'admin');
