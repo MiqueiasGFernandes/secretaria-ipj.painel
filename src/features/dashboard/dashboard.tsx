@@ -1,28 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useMetrics } from "@features/hooks";
+import { MembersMetricPainel } from "./members-metric-painel";
 
 export function Dashboard() {
-  const [count, setCount] = useState({
-    totalMembers: 0,
-    frequenters: 0,
-    requests: 0,
-  });
+  const { metrics, loading, error } = useMetrics();
 
+  if (loading) return <p>Carregando métricas...</p>;
+  if (error) return <p>Erro ao carregar métricas.</p>;
 
-  useEffect(() => {
-    new RemoteDashboardProvider()
-      .fetchMetrics()
-      .then((data) => {
-        setCount({
-          frequenters: data.frequenterMembers,
-          totalMembers: data.totalMembers,
-          requests: data.requests,
-        });
-      });
-  }, []);
-
-  return (
-    <>
-      <MembersMetricPainel count={count} />
-    </>
-  );
+  return <MembersMetricPainel count={metrics} />;
 }
