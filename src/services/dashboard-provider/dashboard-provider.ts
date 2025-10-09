@@ -8,7 +8,7 @@ type MetricDto = {
 
 export class DashboardProvider {
   async fetchMetrics(): Promise<MetricDto> {
-    const url = `${process.env.REACT_APP_API_URL}/dashboard`;
+    const url = `${import.meta.env.VITE_API_URL}/dashboard`;
     const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
     const { data } = await axios.get<MetricDto>(url, { headers: { ...authorization } });
     return data;  
