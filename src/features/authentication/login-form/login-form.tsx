@@ -1,4 +1,4 @@
-import bg from "@assets/login-background.png";
+import bg from "../../../assets/login-backgroud.png";
 
 import { BackgroudImageContainer } from "@components/background-image-container";
 import { Link, LoginForm as RaLoginForm } from "react-admin";

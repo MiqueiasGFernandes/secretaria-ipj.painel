@@ -20,9 +20,9 @@ export class MemberEntity {
    * UF
    */
   ufOrigin: string;
-   /**
-   * Estado civil
-   */
+  /**
+  * Estado civil
+  */
   maritalStatus: string;
   /**
    * Data de Casamento (opcional)
@@ -36,13 +36,13 @@ export class MemberEntity {
    * Nome do Pai
    */
   fatherName: string;
-   /**
-   * Nome da Mãe
-   */
+  /**
+  * Nome da Mãe
+  */
   motherName: string;
-   /**
-   * Outros membros da família (opcional)
-   */
+  /**
+  * Outros membros da família (opcional)
+  */
   anotherFamilyMembers?: string;
   /**
    * CEP
@@ -100,4 +100,16 @@ export class MemberEntity {
    * Frequentante
    */
   frequenter: string;
+
+  password?: string;
+
+  passwordConfirmation?: string;
+
+  transformStringIntoBoolean(): MemberEntity {
+    return {
+      ...this,
+      isMember: this.isMember === 'true',
+      frequenter: this.frequenter === 'true',
+    };
+  }
 }

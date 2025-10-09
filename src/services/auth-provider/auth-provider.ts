@@ -1,6 +1,6 @@
 import axios from 'axios';
 import env from 'env-var';
-import type { UserEntity, AuthCredential } from '../../features/entities';
+import type { UserEntity, AuthCredentialEntity } from '@features/entities';
 import { AuthProvider } from 'ra-core';
 
 export const authProvider: AuthProvider = {
@@ -9,7 +9,7 @@ export const authProvider: AuthProvider = {
     await axios.post(url, user);
   },
 
-  login: async (credentials: AuthCredential) => {
+  login: async (credentials: AuthCredentialEntity) => {
     try {
       const url = `${env.get("LOGIN_URL").asString()}/login`;
       const response = await axios.post(url, credentials);

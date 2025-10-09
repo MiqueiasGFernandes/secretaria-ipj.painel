@@ -1,15 +1,25 @@
 import {
   Admin,
   CustomRoutes,
+  DashboardComponent,
   Resource,
 } from 'react-admin';
 
-import { People, Update } from '@mui/icons-material';
-import { Route } from 'react-router-dom';
-import { authProvider } from '../../services/auth-provider';
-import { theme } from 'styles/theme';
+import { AuthenticationFormsSwitcher } from '@features/authentication/auth-form-switcher';
+import { Dashboard, People, Update } from '@mui/icons-material';
 import { dataProvider } from '@services/data-provider';
 import { i18nProvider } from '@services/translation';
+import { Route } from 'react-router-dom';
+import { theme } from 'styles/theme';
+import { authProvider } from '@services/auth-provider';
+import { resources } from '@shared/constants/resources-map';
+import { CreateMember } from '@features/members/create';
+import { ListMembers } from '@features/members/list';
+import { EditMember } from '@features/members/edit';
+import { ShowMember } from '@features/members/show';
+import { ShowRequest } from '@features/requests/show';
+import { ListRequests } from '@features/requests/list';
+import { SignupMember } from '@features/member-signup';
 
 export function App() {
   return (
@@ -19,8 +29,8 @@ export function App() {
       dataProvider={dataProvider}
       requireAuth={false}
       i18nProvider={i18nProvider}
-      loginPage={<Login backgroundImage={backgroundImage} />}
-      dashboard={Dashboard}
+      loginPage={<AuthenticationFormsSwitcher />}
+      dashboard={Dashboard as DashboardComponent}
     >
       <Resource
         options={{
@@ -29,7 +39,7 @@ export function App() {
         icon={People}
         name={resources.members.name}
         create={CreateMember}
-        list={ListMember}
+        list={ListMembers}
         show={ShowMember}
         edit={EditMember}
       />
