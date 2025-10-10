@@ -17,25 +17,27 @@ export function MembersMetricPainel({ count }: { count: TotalCounters }) {
 
   return <>
     <Grid
-      spacing={{ xs: 2, md: 6 }}
       className={classes.container}
       container
-      xs={12}
+      spacing={2}
     >
       <MetricCard
         count={count.totalMembers}
-        title="Total de Memberos"
+        title="Total de Membros"
         Icon={MembersIcon}
+        backgroundColor="blue"
       />
       <MetricCard
         count={count.frequenters}
         title="Frequentantes"
         Icon={FrequentersIcon}
+        backgroundColor="green"
       />
       <MetricCard
         count={count.requests}
-        title="Solicitações"
+        title="Solicitações Pendentes"
         Icon={RequestsPendingIcon}
+        backgroundColor="yellow"
       />
     </Grid>
   </>
