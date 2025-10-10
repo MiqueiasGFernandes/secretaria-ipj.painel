@@ -6,7 +6,7 @@ import {
 } from 'react-admin';
 
 import { AuthenticationFormsSwitcher } from '@features/authentication/auth-form-switcher';
-import { Dashboard, People, Update } from '@mui/icons-material';
+import { People, Update } from '@mui/icons-material';
 import { dataProvider } from '@services/data-provider';
 import { i18nProvider } from '@services/translation';
 import { Route } from 'react-router-dom';
@@ -20,6 +20,7 @@ import { ShowMember } from '@features/members/show';
 import { ShowRequest } from '@features/requests/show';
 import { ListRequests } from '@features/requests/list';
 import { SignupMember } from '@features/member-signup';
+import { Dashboard } from '@features/dashboard';
 
 export function App() {
   return (
