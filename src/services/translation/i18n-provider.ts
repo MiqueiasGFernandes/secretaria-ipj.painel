@@ -2,7 +2,7 @@ import { TranslationMessages } from 'ra-core';
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 import portugueseMessages from 'ra-language-portuguese';
 
-const messages: Record<string, unknown | TranslationMessages>  = {
+const messages: Record<string, unknown | TranslationMessages> = {
   pt: {
     ...portugueseMessages,
     ra: {
