@@ -10,6 +10,7 @@ const messages: Record<string, unknown | TranslationMessages>  = {
       page: {
         ...portugueseMessages.ra.page,
         empty: 'Nenhum registro para ser exibido',
+        invite: 'Criar Novos Membros'
       },
     },
   },
