@@ -7,7 +7,7 @@ export function transformBooleanFieldIntoViewText<T>(source: keyof T, value: str
 }
 
 export function isBoolean(value: string): boolean {
-  return value.trim().toLowerCase() === "true" || value.trim().toLowerCase() === "false"
+  return value === "true" || value === "false"
 }
 
 export const isEmail = (value: string) => !!String(value)
