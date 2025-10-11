@@ -20,7 +20,7 @@ export function AuthenticationFormsSwitcher() {
           event.preventDefault();
           setActiveForm('LOGIN');
         }}
-        callbackBtnText="Login"
+        callbackBtnText="Voltar para o Login"
       />
   } as Record<string, React.JSX.Element>;
 

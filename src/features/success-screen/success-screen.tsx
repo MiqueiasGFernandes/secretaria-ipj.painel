@@ -1,5 +1,7 @@
 
-import { Link, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+import { Link } from 'react-admin';
+import { useStyles } from './styles';
 
 
 type Options = {
@@ -10,25 +12,23 @@ type Options = {
 }
 
 export function SuccessScreen(options: Options) {
+  const classes = useStyles()
+
   return (
-    <div style={{
-      padding: '10px 20px',
-    }}
-    >
-      <Typography>
+    <div className={classes.container}>
+      <Typography fontSize={20}>
         {options.title}
-        <br />
+        <br /><br />
         {options.message}
       </Typography>
       <Link
+        to="#"
         onClick={options.callbackAction}
-        style={{
-          textAlign: 'center',
-          width: '100%',
-          display: 'block',
-        }}
+        className={classes.returnToLoginLink}
       >
-        {options.callbackBtnText}
+        <Typography fontSize={20}>
+          {options.callbackBtnText}
+        </Typography>
       </Link>
     </div>
   );
