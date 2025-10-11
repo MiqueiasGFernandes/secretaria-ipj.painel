@@ -9,7 +9,7 @@ type Options = {
   callbackAction: (event: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
-export function SucessScreen(options: Options) {
+export function SuccessScreen(options: Options) {
   return (
     <div style={{
       padding: '10px 20px',

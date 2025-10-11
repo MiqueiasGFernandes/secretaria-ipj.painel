@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { SignUpForm } from "../signup-form";
-import { SucessScreen } from "@features/success-screen";
+import { SuccessScreen } from "@features/success-screen";
 import { LoginForm } from "../login-form";
+import { BackgroudImageContainer } from "@components/background-image-container";
+import bg from "@assets/login-backgroud.png";
+
 
 export function AuthenticationFormsSwitcher() {
   const [activeForm, setActiveForm] = useState('LOGIN');
 
   const ACTIVE_FORM = {
     LOGIN: <LoginForm handleRedirectToSignUpForm={() => setActiveForm('SIGNUP')} />,
-    SIGNUP: <SignUpForm handleRedirectToConfirmedSignUpForm={() => setActiveForm('CONFIRMED_SIGNUP')} handleRedirectToLoginForm={() => setActiveForm('SIGNUP')} />,
+    SIGNUP: <SignUpForm handleRedirectToConfirmedSignUpForm={() => setActiveForm('CONFIRMED_SIGNUP')} handleRedirectToLoginForm={() => setActiveForm('LOGIN')} />,
     CONFIRMED_SIGNUP:
-      <SucessScreen
+      <SuccessScreen
         title="Suas informações de Usuário foram enviadas com sucesso."
         message="Nossa equipe analisará suas informações para autorizar sua autenticação"
         callbackAction={(event) => {
@@ -22,5 +25,5 @@ export function AuthenticationFormsSwitcher() {
   } as Record<string, React.JSX.Element>;
 
 
-  return ACTIVE_FORM[activeForm]
+  return <BackgroudImageContainer backgroundImage={bg}>{ACTIVE_FORM[activeForm]}</BackgroudImageContainer>
 }

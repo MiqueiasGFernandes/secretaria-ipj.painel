@@ -20,7 +20,6 @@ export function BackgroudImageContainer(props: { backgroundImage: string, childr
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
-    height: '1px',
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundRepeat: 'no-repeat',
@@ -29,8 +28,9 @@ export function BackgroudImageContainer(props: { backgroundImage: string, childr
       'radial-gradient(circle at 50% 14em, #313264 0%, #00023b 60%, #00023b 100%)',
 
     [`& .${LoginClasses.card}`]: {
-      minWidth: 300,
       marginTop: '6em',
+      maxWidth: '30%',
+      padding: '0.5em 1.5em'
     },
     [`& .${LoginClasses.avatar}`]: {
       margin: '1em',

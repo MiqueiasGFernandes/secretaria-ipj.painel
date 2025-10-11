@@ -1,10 +1,9 @@
-import { Button, CircularProgress } from '@mui/material';
-import { Link, TextInput } from 'react-admin';
+import { Button, CircularProgress, Typography } from '@mui/material';
+import { Form, Link, TextInput } from 'react-admin';
 
 import { useUserRegistration } from '@features/hooks';
-import { AuthForm } from '../auth-form';
-import { StyledFormClasses } from '../styles/styles';
 import { useEffect } from 'react';
+import { useStyles } from './styles';
 
 type SignUpFormOptions = {
   handleRedirectToConfirmedSignUpForm: () => void;
@@ -14,13 +13,16 @@ type SignUpFormOptions = {
 
 export function SignUpForm({ handleRedirectToConfirmedSignUpForm, handleRedirectToLoginForm, }: SignUpFormOptions) {
   const { isLoading, registerUser, success } = useUserRegistration()
+  const classes = useStyles()
 
   useEffect(() => {
-    handleRedirectToConfirmedSignUpForm()
+    if (success) {
+      handleRedirectToConfirmedSignUpForm()
+    }
   }, [success])
 
   return (
-    <AuthForm onSubmit={registerUser}>
+    <Form className={classes.form} onSubmit={(user: any) => registerUser(user)}>
       <TextInput label="Nome" source="name" fullWidth />
       <TextInput label="Email" source="email" fullWidth />
       <TextInput type="password" label="Senha" source="password" fullWidth />
@@ -31,11 +33,11 @@ export function SignUpForm({ handleRedirectToConfirmedSignUpForm, handleRedirect
         color="primary"
         disabled={isLoading}
         fullWidth
-        className={StyledFormClasses.button}
+        className={classes.registerButton}
       >
         {isLoading ? (
           <CircularProgress
-            className={StyledFormClasses.icon}
+            // className={classes.icon}
             size={19}
             thickness={3}
           />
@@ -43,17 +45,18 @@ export function SignUpForm({ handleRedirectToConfirmedSignUpForm, handleRedirect
           'Registrar Usuário'
         )}
       </Button>
-        <Link
-          to="/#"
-          onClick={handleRedirectToLoginForm}
-          style={{
-            textAlign: "center",
-            width: "100%",
-            display: "block",
-          }}
-        >
+      <Link
+        to="#"
+        onClick={(event) => {
+          event.preventDefault()
+          handleRedirectToLoginForm()
+        }}
+        className={classes.returnToLoginLink}
+      >
+        <Typography>
           Login
-        </Link>
-    </AuthForm>
+        </Typography>
+      </Link>
+    </Form>
   );
 }
