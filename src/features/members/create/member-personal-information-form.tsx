@@ -1,4 +1,4 @@
-import {SectionTitle} from "@components/section-title";
+import { SectionTitle } from "@components/section-title";
 import { Grid } from "@mui/material";
 import { brazilianStates } from "@shared/constants/brazilian-states-map";
 import { DateInput, required, SelectInput, TextInput } from "react-admin";
@@ -18,6 +18,7 @@ export function MemberPersonalInformationForm() {
         validate={[
           required('O campo \'nome\' é obrigatório'),
         ]}
+        style={{ marginTop: 0 }}
       />
     </Grid>
     <Grid item xs={12} md={4}>
@@ -28,7 +29,7 @@ export function MemberPersonalInformationForm() {
           required('O campo \'data de nascimento\' é obrigatório'),
         ]}
         fullWidth
-        style={{ paddingTop: 3 }}
+        style={{ marginTop: 0 }}
       />
     </Grid>
     <Grid item xs={12} md={4}>
@@ -46,6 +47,7 @@ export function MemberPersonalInformationForm() {
           required('O campo \'naturalidade\' é obrigatório'),
         ]}
         fullWidth
+        style={{ marginTop: 0 }}
       />
     </Grid>
     <Grid item xs={12} md={4}>
@@ -57,6 +59,7 @@ export function MemberPersonalInformationForm() {
         validate={[
           required('O campo \'Uf de naturalidade\' é obrigatório'),
         ]}
+        style={{ marginTop: 0 }}
       />
     </Grid>
   </>

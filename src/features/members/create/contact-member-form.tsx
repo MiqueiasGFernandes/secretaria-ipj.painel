@@ -66,6 +66,9 @@ export function ContactMemberForm() {
         validate={[
           required('O campo \'UF\' é obrigatório'),
         ]}
+        style={{
+          marginTop: 0
+        }}
       />
     </Grid>
     <Grid item xs={6} md={4}>

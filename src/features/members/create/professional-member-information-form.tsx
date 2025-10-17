@@ -17,7 +17,7 @@ export function ProfessionalMemberInformationForm() {
         choices={academicLevels}
         fullWidth
         style={{
-          marginRight: 10,
+          marginTop: 0,
         }}
         validate={[
           required('O campo \'Grau de instrução\' é obrigatório'),

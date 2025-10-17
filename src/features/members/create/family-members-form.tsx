@@ -1,4 +1,4 @@
-import {SectionTitle} from '@components/section-title';
+import { SectionTitle } from '@components/section-title';
 import { Grid } from '@mui/material';
 import {
   DateInput, required, SelectInput, TextInput,
@@ -17,10 +17,10 @@ export function FamilyMemberForm() {
           source="maritalStatus"
           label="Estado Civil"
           validate={
-          [
-            required('O campo \'estado civil\' é obrigatório'),
-          ]
-        }
+            [
+              required('O campo \'estado civil\' é obrigatório'),
+            ]
+          }
           fullWidth
           choices={[
             {
@@ -40,6 +40,7 @@ export function FamilyMemberForm() {
               name: 'Viúvo',
             },
           ]}
+          style={{ marginTop: 0 }}
         />
       </Grid>
       <Grid item xs={6} md={4}>
@@ -48,7 +49,7 @@ export function FamilyMemberForm() {
           label="Data de Casamento"
           type="date"
           fullWidth
-          style={{ paddingTop: 3 }}
+          style={{ marginTop: 0 }}
         />
       </Grid>
       <Grid item xs={12} md={4}>
@@ -58,35 +59,26 @@ export function FamilyMemberForm() {
           fullWidth
         />
       </Grid>
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <TextInput
           source="fatherName"
           label="Nome do Pai"
           fullWidth
-          style={{
-            marginLeft: 8,
-          }}
         />
       </Grid>
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <TextInput
           source="motherName"
           label="Nome da Mãe"
           fullWidth
-          style={{
-            marginLeft: 8,
-          }}
         />
       </Grid>
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <TextInput
           multiline
           source="anotherFamilyMembers"
           label="Outros Integrantes da Família"
           fullWidth
-          style={{
-            marginLeft: 8,
-          }}
         />
       </Grid>
     </>

@@ -12,6 +12,7 @@ import { FamilyMemberForm } from './family-members-form';
 import { MemberPersonalInformationForm } from './member-personal-information-form';
 import { ProfessionalMemberInformationForm } from './professional-member-information-form';
 import { MemberEntity } from '@features/entities';
+import { ChurchMembresyForm } from './church-membresy-form';
 
 
 function CreateMember() {
@@ -23,11 +24,12 @@ function CreateMember() {
     >
       <SimpleForm>
         <Grid columnSpacing={1} container style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <MemberPersonalInformationForm/>
-          <FamilyMemberForm/>
-          <ContactMemberForm/>
-          <ProfessionalMemberInformationForm/>
-          <AdditionalMemberInformationForm/>
+          <MemberPersonalInformationForm />
+          <FamilyMemberForm />
+          <ContactMemberForm />
+          <ProfessionalMemberInformationForm />
+          <ChurchMembresyForm />
+          <AdditionalMemberInformationForm />
         </Grid>
       </SimpleForm>
     </Create>
