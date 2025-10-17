@@ -3,7 +3,7 @@ import { TextInput } from 'react-admin';
 
 export function AdditionalMemberInformationForm() {
   return <>
-    <Grid item xs={12} style={{ marginBottom: 60 }}>
+    <Grid item xs={12}>
       <TextInput
         source='observations'
         label='Observações'

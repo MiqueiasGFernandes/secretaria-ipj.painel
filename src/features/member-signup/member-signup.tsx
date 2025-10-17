@@ -1,8 +1,8 @@
 import logo from '@assets/logo.png';
-import { isMobile } from 'react-device-detect';
 import { Terms } from '@components/terms';
 import { useMemberSignup } from '@features/hooks';
 import { AdditionalMemberInformationForm } from '@features/members/create/additional-member-information-form';
+import { ChurchMembresyForm } from '@features/members/create/church-membresy-form';
 import { ContactMemberForm } from '@features/members/create/contact-member-form';
 import { FamilyMemberForm } from '@features/members/create/family-members-form';
 import { MemberPersonalInformationForm } from '@features/members/create/member-personal-information-form';
@@ -17,12 +17,14 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import {
+  RadioButtonGroupInput,
   SaveButton,
   SimpleForm,
   Toolbar,
-  useAuthenticated
+  useAuthenticated,
+  useDataProvider
 } from 'react-admin';
-import { ChurchMembresyForm } from '@features/members/create/church-membresy-form';
+import { isMobile } from 'react-device-detect';
 
 export function SignupMember() {
   useAuthenticated({
@@ -77,6 +79,23 @@ export function SignupMember() {
           <ProfessionalMemberInformationForm />
           <ChurchMembresyForm />
           <AdditionalMemberInformationForm />
+          <Grid item xs={12}>
+            <RadioButtonGroupInput
+              required
+              source="hasAcceptShareSelfImage"
+              label="Deseja permitir que sua imagem seja compartilhada através das mídias digitais da IPJ?"
+              choices={[
+                {
+                  id: true,
+                  name: 'Sim',
+                },
+                {
+                  id: false,
+                  name: 'Nâo',
+                },
+              ]}
+            />
+          </Grid>
           <Terms onClose={() => setOpenTermsDialog(false)} isOpen={openTermsDialog} />
           <Dialog open={success}>
             <DialogTitle>

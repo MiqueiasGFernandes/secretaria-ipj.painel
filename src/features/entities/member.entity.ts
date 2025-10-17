@@ -1,4 +1,11 @@
 export class MemberEntity {
+
+  constructor(data?: MemberEntity) {
+    if (data) {
+      Object.assign(this, data)
+    }
+  }
+
   id?: string
   /**
    * Nome

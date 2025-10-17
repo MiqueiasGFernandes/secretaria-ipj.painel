@@ -10,7 +10,9 @@ export function useMemberSignup() {
 
   const notify = useNotify();
 
-  const onSubmit = async (member: MemberEntity) => {
+  const onSubmit = async (values: MemberEntity) => {
+    const member = new MemberEntity(values)
+
     if (member.password !== member.passwordConfirmation) {
       notify('As senhas digitadas devem ser iguais', { type: 'error' });
       return;
