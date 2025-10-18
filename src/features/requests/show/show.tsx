@@ -1,15 +1,15 @@
-
+import React, { useState } from 'react';
+import { useRecordContext } from 'react-admin';
 import { ConfirmDialog } from '@components/confirm-dialog';
 import { useManageRequests } from '@features/hooks';
 import { Close, Done } from '@mui/icons-material';
 import { Grid, Typography } from '@mui/material';
 import { requestColumns, columns as memberColumns } from '@shared/constants';
 import { isBoolean, isEmail } from '@shared/transformers';
-import React, { useState } from 'react';
 import {
   Button,
   FunctionField,
-  Show,
+  Show as ShowContext,
   SimpleShowLayout
 } from 'react-admin';
 
@@ -19,20 +19,22 @@ export function ShowRequest() {
     REJECT: false,
   });
 
-  const { onConfirm, onReject } = useManageRequests()
+  function InnerShowContent() {
+    const record = useRecordContext();
+    const { onConfirm, onReject } = useManageRequests(record);
 
-  return (
-    <>
-      <Show>
-        <ConfirmDialog 
-          dialogOpen={openDialog} 
+    return (
+      <>
+        <ConfirmDialog
+          dialogOpen={openDialog}
           setDialogOpen={setOpenDialog}
           onConfirm={onConfirm}
           onReject={onReject}
-         />
+        />
         <SimpleShowLayout>
           <Typography fontSize={32}>Dados da Solicitação</Typography>
           {requestColumns.resume.map((item) => React.createElement(item.View, {
+            key: item.source,
             label: item.label,
             source: item.source,
           }))}
@@ -42,9 +44,7 @@ export function ShowRequest() {
               startIcon={<Done />}
               variant="contained"
               label="Aprovar"
-              style={{
-                marginRight: 5,
-              }}
+              style={{ marginRight: 5 }}
               onClick={() => setOpenDialog({ ...openDialog, APPROVE: true })}
             />
             <Button
@@ -54,24 +54,21 @@ export function ShowRequest() {
               label="rejeitar"
               onClick={() => setOpenDialog({ ...openDialog, REJECT: true })}
             >
-              <Typography>
-                Rejeitar
-              </Typography>
+              <Typography>Rejeitar</Typography>
             </Button>
           </Grid>
         </SimpleShowLayout>
-      </Show>
-      <Show>
         <SimpleShowLayout>
           {memberColumns.full
             .filter((item) => item.source !== 'memberDocumentId')
             .map((item) => (
               <FunctionField
+                key={item.source}
                 label={item.label}
                 source={item.source}
                 render={({ member: render }) => {
                   if (isBoolean(render[item.source])) {
-                    return item ? 'Sim' : 'Não';
+                    return render[item.source] ? 'Sim' : 'Não';
                   }
 
                   if (isEmail(render[item.source])) {
@@ -82,7 +79,13 @@ export function ShowRequest() {
               />
             ))}
         </SimpleShowLayout>
-      </Show>
-    </>
+      </>
+    );
+  }
+
+  return (
+    <ShowContext>
+      <InnerShowContent />
+    </ShowContext>
   );
 }

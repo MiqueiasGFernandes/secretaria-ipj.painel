@@ -31,6 +31,10 @@ const resume = [
     source: 'frequenter',
     label: 'Frequentante',
   },
+  {
+    source: 'hasAcceptShareSelfImage',
+    label: 'Aut. Imagem'
+  },
 ];
 
 const full = [

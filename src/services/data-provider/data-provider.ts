@@ -39,16 +39,16 @@ export const dataProvider: DataProvider = {
 
   update: async (resource, params) => {
     const url = `${import.meta.env.VITE_API_URL}/${resource}/${params.id}`;
-      const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
-      const response = await axios.patch(url, params.data, { headers: { ...authorization } });
-      const { data } = response.data;
-      return Promise.resolve({ data });
+    const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
+    const response = await axios.patch(url, params.data, { headers: { ...authorization } });
+    const { data } = response.data;
+    return { data }
   },
   delete: async (resource, params) => {
-      const url = `${import.meta.env.VITE_API_URL}/${resource}/${params.id}`;
-      const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
-      await axios.delete(url, { headers: { ...authorization } });
-      return { data: params.previousData as any };
+    const url = `${import.meta.env.VITE_API_URL}/${resource}/${params.id}`;
+    const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
+    await axios.delete(url, { headers: { ...authorization } });
+    return { data: params.previousData as any };
   },
   getMany: function <RecordType extends RaRecord = any>(resource: string, params: GetManyParams): Promise<GetManyResult<RecordType>> {
     throw new Error('Function not implemented.');

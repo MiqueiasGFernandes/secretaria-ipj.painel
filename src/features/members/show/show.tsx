@@ -1,25 +1,48 @@
+import { WarningAmber as WarningIcon } from '@mui/icons-material';
+import { Alert } from '@mui/material';
 import { columns } from '@shared/constants';
 import { isBoolean, isEmail } from '@shared/transformers';
-import { FunctionField, Show, SimpleShowLayout } from 'react-admin';
+import { FunctionField, Show, SimpleShowLayout, useRecordContext } from 'react-admin';
 
 export function ShowMember() {
+  const record = useRecordContext();
   return (
     <Show>
       <SimpleShowLayout>
+        {record?.hasAcceptShareSelfImage === 0 && (
+          <Alert
+            icon={<WarningIcon fontSize="inherit" />}
+            severity="warning"
+            sx={{ mb: 2 }}
+          >
+            Este membro autorizou o compartilhamento da própria imagem.
+          </Alert>
+        )}
+
         {columns.full.map((item) => (
           <FunctionField
             key={item.label}
             label={item.label}
             source={item.source}
-            render={(render) => {
-              if (isBoolean(render[item.source])) {
-                return item ? 'Sim' : 'Não';
+            render={(record) => {
+              const value = record[item.source];
+
+              if (isBoolean(value)) {
+                return value ? 'Sim' : 'Não';
               }
 
-              if (isEmail(render[item.source])) {
-                return <a title={`Enviar email para: ${render[item.source]}`} href={`mailto:${render[item.source]}`}>{render[item.source]}</a>;
+              if (isEmail(value)) {
+                return (
+                  <a
+                    title={`Enviar email para: ${value}`}
+                    href={`mailto:${value}`}
+                  >
+                    {value}
+                  </a>
+                );
               }
-              return render[item.source] || '-';
+
+              return value || '-';
             }}
           />
         ))}

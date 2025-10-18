@@ -1,34 +1,43 @@
-import { useNotify, useRecordContext, useRedirect, useUpdate } from "ra-core";
+import { useDataProvider, useNotify, useRedirect } from "ra-core";
 import { v4 } from "uuid";
 
-export function useManageRequests() {
-    const notify = useNotify();
-    const record = useRecordContext();
-  
-    const redirect = useRedirect();
-    const [update] = useUpdate();
-  
-    const onConfirm = () => {
-      update('requests', { id: record.id, data: { status: 'approved', memberDocumentId: v4().slice(0, 4).toUpperCase() } })
-        .catch(() => {
-          notify('Ocorreu um erro interno ao aprovar o registro');
-        })
-        .then(() => {
-          notify('Solicitação aprovada com êxito');
-          redirect('/requests');
-        });
-    };
-  
-    const onReject = () => {
-      update('requests', { id: record.id, data: { status: 'rejected' } })
-        .catch(() => {
-          notify('Ocorreu um erro interno ao rejeitar o registro');
-        })
-        .then(() => {
-          notify('Solicitação rejeitada com êxito');
-          redirect('/requests');
-        });
-    };
+export function useManageRequests(record: any) {
+  const notify = useNotify();
+  const redirect = useRedirect();
+  const dataProvider = useDataProvider();
 
-    return { onReject, onConfirm }
+  const onConfirm = async () => {
+    if (!record || !record.id) {
+      notify('Registro não disponível');
+      return;
+    }
+
+    const data = { status: 'approved', memberDocumentId: v4().slice(0, 4).toUpperCase() };
+    try {
+      await dataProvider.update('requests', { id: record.id, data, previousData: {} });
+      notify('Solicitação aprovada com êxito');
+      redirect('/requests');
+    } catch (err) {
+      console.error(err)
+      notify('Ocorreu um erro interno ao aprovar o registro');
+    }
+  };
+
+  const onReject = async () => {
+    if (!record || !record.id) {
+      notify('Registro não disponível');
+      return;
+    }
+
+    try {
+      await dataProvider.update('requests', { id: record.id, data: { status: 'rejected' }, previousData: {} });
+      notify('Solicitação rejeitada com êxito');
+      redirect('/requests');
+    } catch (err) {
+      console.error(err)
+      notify('Ocorreu um erro interno ao rejeitar o registro');
+    }
+  };
+
+  return { onReject, onConfirm };
 }
