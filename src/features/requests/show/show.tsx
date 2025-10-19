@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { useRecordContext } from 'react-admin';
 import { ConfirmDialog } from '@components/confirm-dialog';
 import { useManageRequests } from '@features/hooks';
+import { SelfImageWarning } from '@features/self-image-warning';
 import { Close, Done } from '@mui/icons-material';
 import { Grid, Typography } from '@mui/material';
-import { requestColumns, columns as memberColumns } from '@shared/constants';
+import { columns as memberColumns, requestColumns } from '@shared/constants';
 import { isBoolean, isEmail } from '@shared/transformers';
+import React, { useState } from 'react';
 import {
   Button,
   FunctionField,
   Show as ShowContext,
-  SimpleShowLayout
+  SimpleShowLayout, useRecordContext
 } from 'react-admin';
 
 export function ShowRequest() {
@@ -67,6 +67,10 @@ export function ShowRequest() {
                 label={item.label}
                 source={item.source}
                 render={({ member: render }) => {
+                  if (item.source === "hasAcceptShareSelfImage") {
+                    return <SelfImageWarning isSharingSelfImage={render[item.source]} />
+                  }
+
                   if (isBoolean(render[item.source])) {
                     return render[item.source] ? 'Sim' : 'Não';
                   }

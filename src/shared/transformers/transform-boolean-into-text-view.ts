@@ -1,13 +1,17 @@
 
-export function transformBooleanFieldIntoViewText<T>(source: keyof T, value: string): string {
+export function transformBooleanFieldIntoViewText<T>(source: keyof T, value: string | number): any {
   if (isBoolean(value)) {
-    return source ? 'Sim' : 'Não';
+    return transformBoolean(value)
   }
   return value || '-';
 }
 
-export function isBoolean(value: string): boolean {
-  return value === "true" || value === "false"
+export function transformBoolean(value: string | number): string {
+  return value === "true" || value === 1 ? "Sim" : "Não"
+}
+
+export function isBoolean(value: string | number): boolean {
+  return value === "true" || value === "false" || value === 0 || value === 1
 }
 
 export const isEmail = (value: string) => !!String(value)

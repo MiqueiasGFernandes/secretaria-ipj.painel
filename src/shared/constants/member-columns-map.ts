@@ -39,6 +39,10 @@ const resume = [
 
 const full = [
   {
+    source: 'hasAcceptShareSelfImage',
+    label: 'Aut. Imagem'
+  },
+  {
     source: 'memberDocumentId',
     label: 'Matrícula',
   },
