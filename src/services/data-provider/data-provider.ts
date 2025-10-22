@@ -15,7 +15,8 @@ export const dataProvider: DataProvider = {
       }
     });
 
-    const url = `${import.meta.env.VITE_LOGIN_URL}/${resource}?${urlParams.join('&')}`;
+    let url = `${import.meta.env.VITE_LOGIN_URL}/${resource}?${urlParams.join('&')}`;
+    url = url.replaceAll("true", '1').replaceAll("false", '0');
     const response = await axios.get(url, { ...params, headers: { ...authorization } });
     return response.data;
   },

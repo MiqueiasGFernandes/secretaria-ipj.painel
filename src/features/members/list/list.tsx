@@ -8,6 +8,7 @@ import {
   List,
   ShowButton,
   TextInput,
+  BooleanInput,
 } from 'react-admin';
 
 
@@ -15,29 +16,32 @@ export function ListMembers() {
   return (
     <List
       storeKey={false}
-      filter={{ status: 'pending' }}
       filters={
         [
           <TextInput
             key="search"
-            label="Pesquisar"
-            source="q"
+            label="Nome"
+            source="name"
             alwaysOn
-            style={{ marginTop: 30, marginBottom: 30 }}
           />,
+          <BooleanInput
+            source="hasAcceptShareSelfImage"
+            label="Autoriza uso de Imagem"
+          />
         ]
       }
     >
       <Datagrid bulkActionButtons={false}>
-        {columns.resume.map((item) => { 
+        {columns.resume.map((item) => {
           return (
-          <FunctionField
-            key={item.source}
-            label={item.label}
-            source={item.source}
-            render={(render) => transformBooleanFieldIntoViewText<MemberEntity>(item.source as keyof MemberEntity, render[item.source])}
-          />
-        )})}
+            <FunctionField
+              key={item.source}
+              label={item.label}
+              source={item.source}
+              render={(render) => transformBooleanFieldIntoViewText<MemberEntity>(item.source as keyof MemberEntity, render[item.source])}
+            />
+          )
+        })}
         <ShowButton label="Exibir" />
         <EditButton label="Editar" />
       </Datagrid>

@@ -112,6 +112,8 @@ export class MemberEntity {
 
   passwordConfirmation?: string;
 
+  hasAcceptShareSelfImage: number | boolean
+
   transformStringIntoBoolean(): MemberEntity {
     return {
       ...this,
