@@ -21,7 +21,13 @@ export function useMetrics() {
         requests: data.newMembersRequests,
         membersThatNotShareSelfImage: data.membersThatNotShareSelfImage,
       }))
-      .catch(setError)
+      .catch((error) => {
+        console.log(error)
+        if (error.status === 401) {
+          window.location.href = "/login"
+        }
+        setError(error)
+      })
       .finally(() => setLoading(false));
   }, []);
 
