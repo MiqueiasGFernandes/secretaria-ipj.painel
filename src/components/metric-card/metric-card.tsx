@@ -6,13 +6,14 @@ type MemberCardOptions = {
   count: number,
   title: string,
   Icon: React.ElementType
-  backgroundColor: "yellow" | "blue" | "green"
+  backgroundColor: "yellow" | "blue" | "green" | "red"
 }
 
 const backgroundColorsMap = {
   yellow: "#f1c40f",
   blue: "#2980b9",
-  green: "#27ae60"
+  green: "#27ae60",
+  red: "#E74C3C"
 }
 
 export function MetricCard({ count, title, backgroundColor, Icon }: MemberCardOptions) {
@@ -27,7 +28,7 @@ export function MetricCard({ count, title, backgroundColor, Icon }: MemberCardOp
       alignItems={"center"}
       justifyContent={"center"}
       xs={12}
-      md={4}
+      md={3}
     >
       <Card
         variant="elevation"

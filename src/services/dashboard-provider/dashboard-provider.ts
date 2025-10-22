@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 type MetricDto = {
-  totalMembers: 0,
-  frequenters: 0,
-  newMembersRequests: 0
+  totalMembers: number,
+  frequenters: number,
+  newMembersRequests: number,
+  membersThatNotShareSelfImage: number
 }
 
 export class DashboardProvider {
@@ -11,7 +12,7 @@ export class DashboardProvider {
     const url = `${import.meta.env.VITE_API_URL}/dashboard`;
     const authorization = { authorization: `Bearer ${localStorage.getItem('token')}` };
     const { data } = await axios.get<MetricDto>(url, { headers: { ...authorization } });
-    return data;  
+    return data;
   }
 };
 

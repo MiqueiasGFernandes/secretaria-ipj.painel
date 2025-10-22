@@ -7,6 +7,7 @@ export function useMetrics() {
     totalMembers: 0,
     frequenters: 0,
     requests: 0,
+    membersThatNotShareSelfImage: 0,
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -18,6 +19,7 @@ export function useMetrics() {
         frequenters: data.frequenters,
         totalMembers: data.totalMembers,
         requests: data.newMembersRequests,
+        membersThatNotShareSelfImage: data.membersThatNotShareSelfImage,
       }))
       .catch(setError)
       .finally(() => setLoading(false));
