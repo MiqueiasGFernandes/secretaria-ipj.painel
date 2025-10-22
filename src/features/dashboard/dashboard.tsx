@@ -7,10 +7,10 @@ export function Dashboard() {
   const redirect = useRedirect()
 
   if (loading) return <p>Carregando métricas...</p>;
-  if ((error as any)?.status === 401) {
+  if (error) return <p>Erro ao carregar métricas.</p>;
+  if (error && (error as any)?.status === 401) {
     redirect("/login")
   }
-  if (error) return <p>Erro ao carregar métricas.</p>;
 
   return <MembersMetricPainel count={metrics} />;
 }
