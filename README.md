@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# 📌 Portal de Secretaria de Igreja Presbiteriana de Jundiaí
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este frontend foi desenvolvido em **React Admin** com **Vite**, proporcionando uma interface moderna, rápida e intuitiva para a gestão de membros e solicitações da igreja.  
+Ele integra-se diretamente com a API de backend, garantindo **controle completo de dados** e **facilidade de uso** para administradores.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Funcionalidades
 
-### `npm start`
+- ✅ **Autenticação completa de administradores**  
+  - Login seguro via tokens da API backend (Laravel Sanctum)  
+  - Controle de acesso por perfil de usuário  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- ✅ **Link de autocadastro de membros da igreja**  
+  - Permite que novos membros se registrem diretamente
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- ✅ **Gestão completa de membros**  
+  - Criação, leitura, atualização de dados dos membros da igreja
+  - Exibição de informações detalhadas, incluindo dados pessoais, contatos e histórico de participação  
 
-### `npm test`
+- ✅ **Aprovação ou rejeição de solicitações de cadastro**  
+  - Interface intuitiva para gerenciar solicitações pendentes  
+  - Marcação rápida de status aprovado/rejeitado  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ✅ **Indicadores estratégicos em dashboard**  
+  - Número de solicitações pendentes  
+  - Total de membros cadastrados  
+  - Membros que optaram por **não exibir sua imagem pessoal**  conforme garante a LGPD
+  - Facilita acompanhamento e tomada de decisão  
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📂 Estrutura de Telas e Funcionalidades
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Tela / Seção                  | Descrição de Valor |
+|-------------------------------|-----------------|
+| Login Admin                   | Protege o sistema e garante acesso apenas a administradores autorizados |
+| Dashboard                     | Exibe indicadores essenciais de forma clara e visual |
+| Membros                       | CRUD completo com filtros e ordenação avançada |
+| Solicitações                  | Aprovação ou rejeição rápida, com histórico e detalhes |
+| Link de Auto-Cadastro          | Permite novos membros se registrarem sem intervenção administrativa |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🔐 Autenticação e Segurança
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Integração com **Laravel Sanctum** do backend para autenticação baseada em token  
+- Controle de acesso por perfil de administrador  
+- React Admin garante navegação segura e consistente entre as telas  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🛠️ Tecnologias Utilizadas
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [React Admin](https://marmelab.com/react-admin/) → Framework para administração de dados  
+- [Vite](https://vitejs.dev/) → Build rápido e moderno para frontend  
+- JavaScript / TypeScript → Tipagem opcional para segurança e produtividade  
+- Axios / React Query → Comunicação com API backend  
+- Tailwind / Material UI → Interface responsiva e consistente  
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## ▶️ Como Rodar Localmente
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+# Clone o repositório
+git clone https://github.com/MiqueiasGFernandes/secretaria-ipj.painel
+cd secretaria-ipj.painel
 
-### Code Splitting
+# Instale as dependências
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Copie o .env de exemplo e configure a URL da API backend
+cp .env.example .env
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Inicie o servidor de desenvolvimento
+npm run dev
