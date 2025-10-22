@@ -1,3 +1,4 @@
+import { SelfImageWarning } from '@features/self-image-warning';
 import { WarningAmber as WarningIcon } from '@mui/icons-material';
 import { Alert } from '@mui/material';
 import { columns } from '@shared/constants';
@@ -25,6 +26,10 @@ export function ShowMember() {
             label={item.label}
             source={item.source}
             render={(record) => {
+              if (item.source === "hasAcceptShareSelfImage") {
+                return <SelfImageWarning isSharingSelfImage={record[item.source]} />
+              }
+
               const value = record[item.source];
 
               if (isBoolean(value)) {
