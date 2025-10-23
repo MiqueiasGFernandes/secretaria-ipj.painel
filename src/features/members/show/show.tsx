@@ -1,10 +1,9 @@
-import { MemberEntity } from '@features/entities';
-import { SelfImageWarning } from '@features/self-image-warning';
 import { WarningAmber as WarningIcon } from '@mui/icons-material';
 import { Alert } from '@mui/material';
 import { columns } from '@shared/constants';
-import { isBoolean, isEmail } from '@shared/transformers';
+import { ShowColumn } from '@shared/types/column-type';
 import { FunctionField, Show, SimpleShowLayout, useRecordContext } from 'react-admin';
+import { RenderInformation } from './render-information';
 
 export function ShowMember() {
   const record = useRecordContext();
@@ -26,35 +25,7 @@ export function ShowMember() {
             key={item.label}
             label={item.label}
             source={item.source}
-            render={(record) => {
-              const member = new MemberEntity(record)
-
-              member.transformISODateIntoLocalString()
-
-              if (item.source === "hasAcceptShareSelfImage") {
-                return <SelfImageWarning isSharingSelfImage={member[item.source]} />
-              }
-
-              // @ts-expect-error
-              const value = member[item.source];
-
-              if (isBoolean(value)) {
-                return value ? 'Sim' : 'Não';
-              }
-
-              if (isEmail(value)) {
-                return (
-                  <a
-                    title={`Enviar email para: ${value}`}
-                    href={`mailto:${value}`}
-                  >
-                    {value}
-                  </a>
-                );
-              }
-
-              return value || '-';
-            }}
+            render={(record) => <RenderInformation record={record} column={item as ShowColumn} />}
           />
         ))}
       </SimpleShowLayout>
