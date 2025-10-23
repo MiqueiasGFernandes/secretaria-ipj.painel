@@ -22,8 +22,7 @@ export function useMetrics() {
         membersThatNotShareSelfImage: data.membersThatNotShareSelfImage,
       }))
       .catch((error) => {
-        console.log(error)
-        if (error.status === 401) {
+        if (error?.status === 401) {
           window.location.href = "/login"
         }
         setError(error)
