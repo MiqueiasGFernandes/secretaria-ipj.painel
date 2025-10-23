@@ -34,7 +34,7 @@ export class MemberEntity {
   /**
    * Data de Casamento (opcional)
    */
-  weddingDate?: Date;
+  weddingDate?: Date | string;
   /**
    * Nome do Cônjuge (opcional)
    */
@@ -78,7 +78,7 @@ export class MemberEntity {
   /**
    * É membro
    */
-  isMember: string;
+  isMember: string | boolean;
   /**
    * Igreja presbiteriana anterior
    */
@@ -86,7 +86,7 @@ export class MemberEntity {
   /**
    * Data de pedobatismo
    */
-  pedobaptismDate?: Date;
+  pedobaptismDate?: Date | string;
   /**
    * Ministro de pedobatismo
    */
@@ -94,7 +94,7 @@ export class MemberEntity {
   /**
    * Data de confissão de Fé
    */
-  faithConfessionDate?: Date;
+  faithConfessionDate?: Date | string;
   /**
    * Ministro de confissão de Fé
    */
@@ -106,7 +106,7 @@ export class MemberEntity {
   /**
    * Frequentante
    */
-  frequenter: string;
+  frequenter: string | boolean;
 
   password?: string;
 
@@ -115,10 +115,31 @@ export class MemberEntity {
   hasAcceptShareSelfImage: number | boolean
 
   transformStringIntoBoolean(): MemberEntity {
-    return {
-      ...this,
-      isMember: this.isMember === 'true',
-      frequenter: this.frequenter === 'true',
-    };
+    this.isMember = this.isMember === 'true';
+    this.frequenter = this.frequenter === 'true'
+
+    return this
+  }
+
+  transformISODateIntoLocalString(): MemberEntity {
+    this.weddingDate = this.weddingDate ? (this.weddingDate as Date).toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }) : this.weddingDate
+
+    this.pedobaptismDate = this.pedobaptismDate ? (this.pedobaptismDate as Date).toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }) : this.pedobaptismDate
+
+    this.faithConfessionDate = this.faithConfessionDate ? (this.faithConfessionDate as Date).toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }) : this.faithConfessionDate
+
+    return this
   }
 }

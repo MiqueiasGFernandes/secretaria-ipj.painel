@@ -1,3 +1,4 @@
+import { MemberEntity } from '@features/entities';
 import { SelfImageWarning } from '@features/self-image-warning';
 import { WarningAmber as WarningIcon } from '@mui/icons-material';
 import { Alert } from '@mui/material';
@@ -26,11 +27,16 @@ export function ShowMember() {
             label={item.label}
             source={item.source}
             render={(record) => {
+              const member = new MemberEntity(record)
+
+              member.transformISODateIntoLocalString()
+
               if (item.source === "hasAcceptShareSelfImage") {
-                return <SelfImageWarning isSharingSelfImage={record[item.source]} />
+                return <SelfImageWarning isSharingSelfImage={member[item.source]} />
               }
 
-              const value = record[item.source];
+              // @ts-expect-error
+              const value = member[item.source];
 
               if (isBoolean(value)) {
                 return value ? 'Sim' : 'Não';
