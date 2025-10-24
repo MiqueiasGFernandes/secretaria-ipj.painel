@@ -22,7 +22,6 @@ function CreateMember() {
       transform={(data: MemberEntity) => {
         const member = new MemberEntity(data)
 
-        member.transformStringIntoBoolean()
         member.generateMemberDocumentId()
 
         return member

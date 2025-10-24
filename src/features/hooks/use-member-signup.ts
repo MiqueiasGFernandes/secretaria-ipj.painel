@@ -11,13 +11,12 @@ export function useMemberSignup() {
   const notify = useNotify();
 
   const onSubmit = async (values: MemberEntity) => {
-    const member = new MemberEntity(values)
+    const data = new MemberEntity(values)
 
-    if (member.password !== member.passwordConfirmation) {
+    if (data.password !== data.passwordConfirmation) {
       notify('As senhas digitadas devem ser iguais', { type: 'error' });
       return;
     }
-    const data = member.transformStringIntoBoolean()
     await dataProvider
       .create('requests', { data })
       .then((result) => {

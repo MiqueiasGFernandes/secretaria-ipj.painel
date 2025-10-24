@@ -1,16 +1,15 @@
 import { RenderInformation } from '@components/render-information';
 import { MemberEntity } from '@features/entities';
 import { columns } from '@shared/constants';
-import { transformBooleanFieldIntoViewText } from '@shared/transformers';
 import { ShowColumn } from '@shared/types/column-type';
 import {
+  BooleanInput,
   Datagrid,
   EditButton,
   FunctionField,
   List,
   ShowButton,
   TextInput,
-  BooleanInput,
 } from 'react-admin';
 
 

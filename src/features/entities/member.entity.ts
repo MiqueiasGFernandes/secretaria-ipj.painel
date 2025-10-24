@@ -79,7 +79,7 @@ export class MemberEntity {
   /**
    * É membro
    */
-  isMember: string | boolean;
+  isMember: boolean;
   /**
    * Igreja presbiteriana anterior
    */
@@ -107,13 +107,13 @@ export class MemberEntity {
   /**
    * Frequentante
    */
-  frequenter: string | boolean;
+  frequenter: boolean;
 
   password?: string;
 
   passwordConfirmation?: string;
 
-  hasAcceptShareSelfImage: number | boolean
+  hasAcceptShareSelfImage: boolean
 
   private formateToLocalDateString(dateString?: string): string | undefined {
     return dateString ? new Date(dateString).toLocaleDateString('pt-BR', {
@@ -121,13 +121,6 @@ export class MemberEntity {
       month: '2-digit',
       year: 'numeric'
     }) : dateString
-  }
-
-  transformStringIntoBoolean(): MemberEntity {
-    this.isMember = this.isMember === 'true';
-    this.frequenter = this.frequenter === 'true'
-
-    return this
   }
 
   generateMemberDocumentId(): MemberEntity {
