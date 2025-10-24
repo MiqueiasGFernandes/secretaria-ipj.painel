@@ -56,6 +56,7 @@ export function MemberPersonalInformationForm() {
     <Grid item xs={12} md={4}>
       <SelectInput
         source="ufOrigin"
+        disabled={naturality === 'estrangeiro'}
         label="UF de naturalidade"
         choices={brazilianStates}
         fullWidth
