@@ -49,6 +49,7 @@ export function FamilyMemberForm() {
       <Grid item xs={6} md={4}>
         <DateInput
           source="weddingDate"
+          disabled={maritalStatus !== 'casado'}
           label="Data de Casamento"
           type="date"
           fullWidth
@@ -65,6 +66,7 @@ export function FamilyMemberForm() {
           source="spouse"
           label="Nome do Cônjuge"
           fullWidth
+          disabled={maritalStatus !== 'casado'}
           validate={
             maritalStatus === 'casado' ? [
               required('O campo \'nome do cônjuge\' é obrigatório'),
