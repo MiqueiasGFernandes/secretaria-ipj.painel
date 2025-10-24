@@ -1,5 +1,14 @@
 # Changelog
 
+## [v1.0.2] - 2025-10-24
+
+- [fix] Corrigida formatação de datas
+- [fix] Corrigido problema que impedia o cadastro administrativo de um membro
+- [fix] Corrigida compatibilidade de dados booleanos
+- [fix] Corrigido problema de integração ao rejeitar solicitação de membro
+- [feat] Adicionada validação com dependência nos campos de cadastro do membro
+
+
 ## [v1.0.1] - 2025-10-22
 
 - [style] Adicionado suporte ao typescript
