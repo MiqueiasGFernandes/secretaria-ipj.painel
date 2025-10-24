@@ -1,10 +1,8 @@
-import { v4 } from 'uuid';
-import { useNotify, useRecordContext, useRedirect, useUpdate } from "ra-core";
 import { Confirm } from "react-admin";
 
 type OpenDialogState = {
-    APPROVE: boolean,
-    REJECT: boolean
+  APPROVE: boolean,
+  REJECT: boolean
 }
 
 type ConfirmDialogOptions = {
