@@ -1,10 +1,12 @@
 import { ConfirmDialog } from '@components/confirm-dialog';
+import { RenderInformation } from '@components/render-information';
+import { MemberEntity } from '@features/entities';
+import { MemberRequestEntity } from '@features/entities/member-request.entity';
 import { useManageRequests } from '@features/hooks';
-import { SelfImageWarning } from '@features/self-image-warning';
 import { Close, Done } from '@mui/icons-material';
 import { Grid, Typography } from '@mui/material';
 import { columns as memberColumns, requestColumns } from '@shared/constants';
-import { isBoolean, isEmail } from '@shared/transformers';
+import { ShowColumn } from '@shared/types/column-type';
 import React, { useState } from 'react';
 import {
   Button,
@@ -66,19 +68,15 @@ export function ShowRequest() {
                 key={item.source}
                 label={item.label}
                 source={item.source}
-                render={({ member: render }) => {
-                  if (item.source === "hasAcceptShareSelfImage") {
-                    return <SelfImageWarning isSharingSelfImage={render[item.source]} />
-                  }
+                render={(record) => {
+                  const request = new MemberRequestEntity(record)
 
-                  if (isBoolean(render[item.source])) {
-                    return render[item.source] ? 'Sim' : 'Não';
-                  }
+                  const member = new MemberEntity(request.member);
 
-                  if (isEmail(render[item.source])) {
-                    return <a title={`Enviar email para: ${render[item.source]}`} href={`mailto:${render[item.source]}`}>{render[item.source]}</a>;
-                  }
-                  return render[item.source] || '-';
+                  member.transformISODateIntoLocalString()
+
+                  return <RenderInformation isDetailedView={true} record={member} column={item as ShowColumn<MemberEntity>} />
+
                 }}
               />
             ))}

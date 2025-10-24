@@ -18,7 +18,7 @@ export class MemberEntity {
   /**
    * Data de Nascimento
    */
-  birthdate: Date;
+  birthdate: Date | string;
   /**
    * Naturalidade
    */
@@ -114,6 +114,14 @@ export class MemberEntity {
 
   hasAcceptShareSelfImage: number | boolean
 
+  private formateToLocalDateString(dateString?: string): string | undefined {
+    return dateString ? new Date(dateString).toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }) : dateString
+  }
+
   transformStringIntoBoolean(): MemberEntity {
     this.isMember = this.isMember === 'true';
     this.frequenter = this.frequenter === 'true'
@@ -122,23 +130,10 @@ export class MemberEntity {
   }
 
   transformISODateIntoLocalString(): MemberEntity {
-    this.weddingDate = this.weddingDate ? (this.weddingDate as Date).toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    }) : this.weddingDate
-
-    this.pedobaptismDate = this.pedobaptismDate ? (this.pedobaptismDate as Date).toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    }) : this.pedobaptismDate
-
-    this.faithConfessionDate = this.faithConfessionDate ? (this.faithConfessionDate as Date).toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    }) : this.faithConfessionDate
+    this.birthdate = this.formateToLocalDateString(this.birthdate as string) as string
+    this.weddingDate = this.formateToLocalDateString(this.weddingDate as string);
+    this.pedobaptismDate = this.formateToLocalDateString(this.pedobaptismDate as string)
+    this.faithConfessionDate = this.formateToLocalDateString(this.faithConfessionDate as string)
 
     return this
   }

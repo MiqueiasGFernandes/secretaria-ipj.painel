@@ -6,15 +6,15 @@ import { ShowColumn } from "@shared/types/column-type";
 import { ReactNode } from "react";
 
 type RenderInformationOptions = {
-  record: MemberEntity
+  record: any
   column: ShowColumn
+  isDetailedView: boolean
 }
 
-export function RenderInformation({ record, column }: RenderInformationOptions) {
-
+export function RenderInformation({ record, column, isDetailedView = true }: RenderInformationOptions) {
   const value = record[column.source] ?? "-";
 
-  if (column.source === "hasAcceptShareSelfImage") {
+  if (column.source === "hasAcceptShareSelfImage" && isDetailedView) {
     return <SelfImageWarning isSharingSelfImage={record[column.source]} />
   }
 
@@ -33,5 +33,5 @@ export function RenderInformation({ record, column }: RenderInformationOptions) 
     );
   }
 
-  return <Typography>{value as any}</Typography>;
+  return isDetailedView ? <Typography>{value as any}</Typography> : value;
 }

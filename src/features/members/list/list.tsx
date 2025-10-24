@@ -1,6 +1,8 @@
+import { RenderInformation } from '@components/render-information';
 import { MemberEntity } from '@features/entities';
 import { columns } from '@shared/constants';
 import { transformBooleanFieldIntoViewText } from '@shared/transformers';
+import { ShowColumn } from '@shared/types/column-type';
 import {
   Datagrid,
   EditButton,
@@ -38,8 +40,13 @@ export function ListMembers() {
               key={item.source}
               label={item.label}
               source={item.source}
-              render={(render) => transformBooleanFieldIntoViewText<MemberEntity>(item.source as keyof MemberEntity, render[item.source])}
-            />
+              render={(record) => {
+                const member = new MemberEntity(record)
+
+                member.transformISODateIntoLocalString()
+
+                return <RenderInformation isDetailedView={false} record={member} column={item as ShowColumn<MemberEntity>} />
+              }} />
           )
         })}
         <ShowButton label="Exibir" />

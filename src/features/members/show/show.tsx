@@ -1,9 +1,10 @@
+import { RenderInformation } from '@components/render-information';
+import { MemberEntity } from '@features/entities';
 import { WarningAmber as WarningIcon } from '@mui/icons-material';
 import { Alert } from '@mui/material';
 import { columns } from '@shared/constants';
 import { ShowColumn } from '@shared/types/column-type';
 import { FunctionField, Show, SimpleShowLayout, useRecordContext } from 'react-admin';
-import { RenderInformation } from './render-information';
 
 export function ShowMember() {
   const record = useRecordContext();
@@ -25,7 +26,13 @@ export function ShowMember() {
             key={item.label}
             label={item.label}
             source={item.source}
-            render={(record) => <RenderInformation record={record} column={item as ShowColumn} />}
+            render={(record) => {
+              const member = new MemberEntity(record)
+
+              member.transformISODateIntoLocalString()
+
+              return <RenderInformation isDetailedView={true} record={member} column={item as ShowColumn<MemberEntity>} />
+            }}
           />
         ))}
       </SimpleShowLayout>
