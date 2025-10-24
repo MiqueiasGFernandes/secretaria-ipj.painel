@@ -1,6 +1,6 @@
 import { SectionTitle } from "@components/section-title";
 import { Grid } from "@mui/material";
-import { DateInput, RadioButtonGroupInput, TextInput } from "react-admin";
+import { BooleanInput, DateInput, RadioButtonGroupInput, TextInput } from "react-admin";
 
 export function ChurchMembresyForm() {
   return (<>
@@ -10,19 +10,9 @@ export function ChurchMembresyForm() {
       </SectionTitle>
     </Grid>
     <Grid item xs={12} md={2}>
-      <RadioButtonGroupInput
+      <BooleanInput
         source="isMember"
         label="Já é membro da IPB?"
-        choices={[
-          {
-            id: true,
-            name: 'Sim',
-          },
-          {
-            id: false,
-            name: 'Nâo',
-          },
-        ]}
       />
     </Grid>
     <Grid item xs={12} md={10}>
@@ -61,19 +51,9 @@ export function ChurchMembresyForm() {
       />
     </Grid>
     <Grid item xs={12}>
-      <RadioButtonGroupInput
+      <BooleanInput
         source="frequenter"
         label="Frequentante?"
-        choices={[
-          {
-            id: true,
-            name: 'Sim',
-          },
-          {
-            id: false,
-            name: 'Nâo',
-          },
-        ]}
       />
     </Grid>
   </>)

@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import {
-  RadioButtonGroupInput,
+  BooleanInput,
   SaveButton,
   SimpleForm,
   Toolbar,
@@ -79,20 +79,10 @@ export function SignupMember() {
           <ChurchMembresyForm />
           <AdditionalMemberInformationForm />
           <Grid item xs={12}>
-            <RadioButtonGroupInput
+            <BooleanInput
               required
               source="hasAcceptShareSelfImage"
               label="Deseja permitir que sua imagem seja compartilhada através das mídias digitais da IPJ?"
-              choices={[
-                {
-                  id: true,
-                  name: 'Sim',
-                },
-                {
-                  id: false,
-                  name: 'Nâo',
-                },
-              ]}
             />
           </Grid>
           <Terms onClose={() => setOpenTermsDialog(false)} isOpen={openTermsDialog} />
