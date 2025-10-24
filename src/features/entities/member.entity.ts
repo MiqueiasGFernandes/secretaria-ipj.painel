@@ -1,3 +1,4 @@
+import { v4 } from 'uuid';
 export class MemberEntity {
 
   constructor(data?: MemberEntity) {
@@ -125,6 +126,12 @@ export class MemberEntity {
   transformStringIntoBoolean(): MemberEntity {
     this.isMember = this.isMember === 'true';
     this.frequenter = this.frequenter === 'true'
+
+    return this
+  }
+
+  generateMemberDocumentId(): MemberEntity {
+    this.memberDocumentId = v4().slice(0, 4).toUpperCase()
 
     return this
   }

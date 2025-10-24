@@ -19,7 +19,14 @@ function CreateMember() {
   return (
     <Create
       title="Cadastrar Novo Membro"
-      transform={(data: MemberEntity) => data.transformStringIntoBoolean()}
+      transform={(data: MemberEntity) => {
+        const member = new MemberEntity(data)
+
+        member.transformStringIntoBoolean()
+        member.generateMemberDocumentId()
+
+        return member
+      }}
       redirect="list"
     >
       <SimpleForm>
