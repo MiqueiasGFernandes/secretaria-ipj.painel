@@ -2,8 +2,11 @@ import { SectionTitle } from "@components/section-title";
 import { Grid } from "@mui/material";
 import { brazilianStates } from "@shared/constants/brazilian-states-map";
 import { DateInput, required, SelectInput, TextInput } from "react-admin";
+import { useWatch } from 'react-hook-form';
 
 export function MemberPersonalInformationForm() {
+  const naturality = useWatch<{ naturality: string }>({ name: 'naturality' })
+
   return <>
     <Grid item xs={12}>
       <SectionTitle>
@@ -56,9 +59,9 @@ export function MemberPersonalInformationForm() {
         label="UF de naturalidade"
         choices={brazilianStates}
         fullWidth
-        validate={[
+        validate={naturality === 'brasileiro' ? [
           required('O campo \'Uf de naturalidade\' é obrigatório'),
-        ]}
+        ] : []}
         style={{ marginTop: 0 }}
       />
     </Grid>

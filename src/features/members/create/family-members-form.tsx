@@ -3,8 +3,11 @@ import { Grid } from '@mui/material';
 import {
   DateInput, required, SelectInput, TextInput,
 } from 'react-admin';
+import { useWatch } from 'react-hook-form';
 
 export function FamilyMemberForm() {
+  const maritalStatus = useWatch<{ maritalStatus: string }>({ name: 'maritalStatus' })
+
   return (
     <>
       <Grid item xs={12}>
@@ -49,6 +52,11 @@ export function FamilyMemberForm() {
           label="Data de Casamento"
           type="date"
           fullWidth
+          validate={
+            maritalStatus === 'casado' ? [
+              required('O campo \'data de casamento\' é obrigatório'),
+            ] : []
+          }
           style={{ marginTop: 0 }}
         />
       </Grid>
@@ -57,6 +65,11 @@ export function FamilyMemberForm() {
           source="spouse"
           label="Nome do Cônjuge"
           fullWidth
+          validate={
+            maritalStatus === 'casado' ? [
+              required('O campo \'nome do cônjuge\' é obrigatório'),
+            ] : []
+          }
         />
       </Grid>
       <Grid item xs={12}>

@@ -21,8 +21,7 @@ import {
   SaveButton,
   SimpleForm,
   Toolbar,
-  useAuthenticated,
-  useDataProvider
+  useAuthenticated
 } from 'react-admin';
 import { isMobile } from 'react-device-detect';
 
