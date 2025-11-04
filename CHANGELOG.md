@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.1.0] - 2025-11-04
+- [style] Layout aprimorado das telas de autocadastro
+- [style] Telas tornadas responsivas para melhor experiência em dispositivos móveis
+- [fix] Melhorado termos de uso e política de compartilhamento de imagem/dados, conforme LGPD
+- [feat] Adicionado link de autocadastro diretamente no painel administrativo
+
 ## [v1.0.2] - 2025-10-24
 
 - [fix] Corrigida formatação de datas
