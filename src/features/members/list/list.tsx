@@ -11,12 +11,14 @@ import {
   ShowButton,
   TextInput,
 } from 'react-admin';
+import { ListEmpty } from './list-empty';
 
 
 export function ListMembers() {
   return (
     <List
       storeKey={false}
+      empty={<ListEmpty />}
       filters={
         [
           <TextInput
