@@ -9,7 +9,7 @@ export function FamilyMemberForm() {
   const maritalStatus = useWatch<{ maritalStatus: string }>({ name: 'maritalStatus' })
 
   return (
-    <>
+    <Grid container spacing={1}>
       <Grid item xs={12}>
         <SectionTitle>
           Família
@@ -96,6 +96,6 @@ export function FamilyMemberForm() {
           fullWidth
         />
       </Grid>
-    </>
+    </Grid>
   );
 }

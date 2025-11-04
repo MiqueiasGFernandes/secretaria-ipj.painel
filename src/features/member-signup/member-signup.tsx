@@ -23,7 +23,6 @@ import {
   Toolbar,
   useAuthenticated
 } from 'react-admin';
-import { isMobile } from 'react-device-detect';
 
 export function SignupMember() {
   useAuthenticated({
@@ -36,51 +35,66 @@ export function SignupMember() {
 
   const { onSubmit, requestId, success } = useMemberSignup()
 
+  const containerPadding = {
+    py: { xs: 0, xl: 10 },
+    px: { xs: 0, xl: 50 }
+  }
+
   return (
     <SimpleForm
       onSubmit={(event: any) => onSubmit(event)}
       toolbar={(
-        <Toolbar
-          style={{
-            padding: isMobile ? '5vh 2.5vw' : '5vh 25vw',
-          }}>
-          <Typography fontSize={10}>
-            Ao clicar em Cadastre-se você declara que concorda com
-            os <button
-              type="button"
-              style={{
-                color: 'blue',
-                cursor: 'pointer',
-                textDecoration: 'underline',
-                background: 'none',
-                border: 0,
-              }}
-              onClick={() => setOpenTermsDialog(true)}
-            >termos de privacidade.
-            </button>
-          </Typography>
-          <SaveButton label="Cadastrar-se" />
+        <Toolbar>
+          <Grid
+            container
+            sx={{
+              py: 1,
+              px: containerPadding.px
+            }}>
+            <Grid item xs={12}>
+              <Typography fontSize={14}>
+                Ao clicar em Cadastre-se você declara que concorda com
+                os <Typography
+                  sx={{
+                    display: {
+                      xs: 'block',
+                      xl: 'inline'
+                    }
+                  }}
+                  style={{
+                    color: 'blue',
+                    cursor: 'pointer',
+                    textDecoration: 'underline',
+                    background: 'none',
+                    border: 0,
+                  }}
+                  onClick={() => setOpenTermsDialog(true)}
+                >termos de privacidade.
+                </Typography>
+              </Typography>
+            </Grid>
+            <Grid item sx={{ my: { xs: 2 } }} xs={12}>
+              <SaveButton label="Cadastrar-se" />
+            </Grid>
+          </Grid>
         </Toolbar>
       )}
     >
       <Grid
         container
-        style={{
-          padding: isMobile ? '5vh 2.5vw' : '10vh 25vw',
-        }}>
+        sx={containerPadding}>
         <Grid xs={12}>
           <img src={logo} alt="Igreja Presbiteriana de Jundiaí" />
         </Grid>
-        <Grid container xs={12} spacing={1}>
+        <Grid container xs={12}>
           <MemberPersonalInformationForm />
           <FamilyMemberForm />
           <ContactMemberForm />
           <ProfessionalMemberInformationForm />
           <ChurchMembresyForm />
           <AdditionalMemberInformationForm />
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ pb: { xs: 10, md: 0 } }}>
             <BooleanInput
-              required
               source="hasAcceptShareSelfImage"
               label="Deseja permitir que sua imagem seja compartilhada através das mídias digitais da IPJ?"
             />

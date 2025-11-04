@@ -4,6 +4,7 @@ import { Form, Link, TextInput } from 'react-admin';
 import { useUserRegistration } from '@features/hooks';
 import { useEffect } from 'react';
 import { useStyles } from './styles';
+import { AuthenticationCard } from '@components/authentication-card';
 
 type SignUpFormOptions = {
   handleRedirectToConfirmedSignUpForm: () => void;
@@ -22,8 +23,8 @@ export function SignUpForm({ handleRedirectToConfirmedSignUpForm, handleRedirect
   }, [success])
 
   return (
-    <Form className={classes.form} onSubmit={(user: any) => registerUser(user)}>
-      <Grid container>
+    <AuthenticationCard styles={{ maxWidth: '90%', padding: 2 }}>
+      <Form onSubmit={(user: any) => registerUser(user)}>
         <TextInput label="Nome" source="name" fullWidth />
         <TextInput label="Email" source="email" fullWidth />
         <TextInput type="password" label="Senha" source="password" fullWidth />
@@ -57,7 +58,7 @@ export function SignUpForm({ handleRedirectToConfirmedSignUpForm, handleRedirect
             Login
           </Typography>
         </Link>
-      </Grid>
-    </Form>
+      </Form>
+    </AuthenticationCard>
   );
 }

@@ -4,7 +4,7 @@ import { academicLevels } from "@shared/constants/academic-levels-map";
 import { required, SelectInput, TextInput } from "react-admin";
 
 export function ProfessionalMemberInformationForm() {
-  return <>
+  return <Grid container spacing={1}>
     <Grid xs={12} style={{ marginLeft: 8 }}>
       <SectionTitle>
         Informações Profissionais
@@ -31,5 +31,5 @@ export function ProfessionalMemberInformationForm() {
         fullWidth
       />
     </Grid>
-  </>
+  </Grid>
 }

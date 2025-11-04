@@ -24,7 +24,6 @@ export function MetricCard({ count, title, backgroundColor, Icon }: MemberCardOp
     <Grid
       item
       container
-      height={"100%"}
       alignItems={"center"}
       justifyContent={"center"}
       xs={12}

@@ -1,9 +1,9 @@
 import { SectionTitle } from "@components/section-title";
 import { Grid } from "@mui/material";
-import { BooleanInput, DateInput, RadioButtonGroupInput, TextInput } from "react-admin";
+import { BooleanInput, DateInput, TextInput } from "react-admin";
 
 export function ChurchMembresyForm() {
-  return (<>
+  return (<Grid container spacing={1}>
     <Grid item xs={12}>
       <SectionTitle>
         Membresia
@@ -56,5 +56,5 @@ export function ChurchMembresyForm() {
         label="Frequentante?"
       />
     </Grid>
-  </>)
+  </Grid>)
 }

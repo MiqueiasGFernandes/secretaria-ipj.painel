@@ -19,7 +19,7 @@ export function MembersMetricPainel({ count }: { count: TotalCounters }) {
   return <Grid
     className={classes.container}
     container
-    spacing={2}
+    spacing={{ xs: 1, md: 2 }}
   >
     <MetricCard
       count={count.totalMembers}

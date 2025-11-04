@@ -32,7 +32,10 @@ export function ListMembers() {
         ]
       }
     >
-      <Datagrid bulkActionButtons={false}>
+      <Datagrid
+        bulkActionButtons={false}
+        sx={{ overflowX: { xs: 'scroll', xl: 'auto' }, maxWidth: { xs: '100vw', xl: 'auto' } }}
+      >
         {columns.resume.map((item) => {
           return (
             <FunctionField
@@ -44,7 +47,11 @@ export function ListMembers() {
 
                 member.transformISODateIntoLocalString()
 
-                return <RenderInformation isDetailedView={false} record={member} column={item as ShowColumn<MemberEntity>} />
+                return <RenderInformation
+                  isDetailedView={false}
+                  record={member}
+                  column={item as ShowColumn<MemberEntity>}
+                />
               }} />
           )
         })}

@@ -1,5 +1,4 @@
-import { Avatar, Card, styled } from "@mui/material";
-import LockIcon from '@mui/icons-material/Lock';
+import { styled } from "@mui/material";
 
 import React, { useEffect, useRef } from "react";
 
@@ -7,16 +6,10 @@ export function BackgroudImageContainer(props: { backgroundImage: string, childr
   const { backgroundImage, children, ...restProps } = props;
 
   const PREFIX = 'RaLogin';
-  const LoginClasses = {
-    card: `${PREFIX}-card`,
-    avatar: `${PREFIX}-avatar`,
-    icon: `${PREFIX}-icon`,
-  };
-
   const Root = styled('div', {
     name: PREFIX,
     overridesResolver: (_props, styles) => styles.root,
-  })(({ theme }) => ({
+  })(() => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
@@ -26,20 +19,6 @@ export function BackgroudImageContainer(props: { backgroundImage: string, childr
     backgroundSize: 'cover',
     backgroundImage:
       'radial-gradient(circle at 50% 14em, #313264 0%, #00023b 60%, #00023b 100%)',
-
-    [`& .${LoginClasses.card}`]: {
-      marginTop: '6em',
-      maxWidth: '30%',
-      padding: '0.5em 1.5em'
-    },
-    [`& .${LoginClasses.avatar}`]: {
-      margin: '1em',
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    [`& .${LoginClasses.icon}`]: {
-      backgroundColor: theme.palette.secondary.main,
-    },
   }));
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -66,18 +45,10 @@ export function BackgroudImageContainer(props: { backgroundImage: string, childr
     }
   });
 
-  return <Root {...restProps} ref={containerRef}>
-    <Card className={LoginClasses.card}>
-      <div className={LoginClasses.avatar}>
-        <Avatar className={LoginClasses.icon}>
-          <LockIcon />
-        </Avatar>
-      </div>
-      {children}
-      <div style={{
-        padding: '0px 20px 20px',
-      }}
-      />
-    </Card>
+  return <Root
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} {...restProps}
+    ref={containerRef}
+  >
+    {children}
   </Root>
 }

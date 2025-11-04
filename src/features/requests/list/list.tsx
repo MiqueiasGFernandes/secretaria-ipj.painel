@@ -14,7 +14,10 @@ function ListRequests() {
       }}
       exporter={false}
     >
-      <Datagrid bulkActionButtons={false}>
+      <Datagrid
+        bulkActionButtons={false}
+        sx={{ overflowX: { xs: 'scroll', xl: 'auto' }, maxWidth: { xs: '100vw', xl: 'auto' } }}
+      >
         {requestColumns.resume.map((item) => React.createElement(item.View, {
           source: item.source,
           label: item.label,
@@ -25,4 +28,4 @@ function ListRequests() {
   );
 }
 
-export {ListRequests};
+export { ListRequests };

@@ -7,7 +7,7 @@ import { useWatch } from 'react-hook-form';
 export function MemberPersonalInformationForm() {
   const naturality = useWatch<{ naturality: string }>({ name: 'naturality' })
 
-  return <>
+  return <Grid container spacing={1}>
     <Grid item xs={12}>
       <SectionTitle>
         Informações Pessoais
@@ -66,5 +66,5 @@ export function MemberPersonalInformationForm() {
         style={{ marginTop: 0 }}
       />
     </Grid>
-  </>
+  </Grid>
 }

@@ -1,8 +1,9 @@
+import { AuthenticationCard } from "@components/authentication-card";
 import { Typography } from "@mui/material";
 import { Link, LoginForm as RaLoginForm } from "react-admin";
 
 export function LoginForm({ handleRedirectToSignUpForm }: { handleRedirectToSignUpForm: () => void }) {
-  return <div>
+  return <AuthenticationCard>
     <RaLoginForm />
     <Link
       to="#"
@@ -20,5 +21,5 @@ export function LoginForm({ handleRedirectToSignUpForm }: { handleRedirectToSign
         Crie uma conta agora
       </Typography>
     </Link>
-  </div >
+  </AuthenticationCard >
 }

@@ -9,7 +9,7 @@ export function ContactMemberForm() {
 
   const { address, handleGetAddressByPostalCode } = useAddress();
 
-  return <>
+  return <Grid container spacing={1}>
     <Grid xs={12} style={{ marginLeft: 8 }}>
       <SectionTitle>
         Contato
@@ -121,5 +121,5 @@ export function ContactMemberForm() {
         fullWidth
       />
     </Grid>
-  </>
+  </Grid>
 }

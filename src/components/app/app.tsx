@@ -2,7 +2,9 @@ import {
   Admin,
   CustomRoutes,
   DashboardComponent,
+  Layout,
   Resource,
+  AppBar
 } from 'react-admin';
 
 import { AuthenticationFormsSwitcher } from '@features/authentication/auth-form-switcher';
@@ -26,6 +28,7 @@ export function App() {
   return (
     <BrowserRouter>
       <Admin
+        layout={(layoutProps) => <Layout {...layoutProps} appBar={(appBarProps) => <AppBar {...appBarProps} color='primary' />} />}
         authProvider={authProvider}
         theme={theme}
         dataProvider={dataProvider}
